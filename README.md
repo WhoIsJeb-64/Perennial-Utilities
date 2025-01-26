@@ -10,4 +10,7 @@ Meant to link to the server´s discord if one exists; output is fully configurab
 Requires *putils.discord* to use.\
 */map*\
 Meant to link to the server´s dynmap if one exists; output is fully configurable.\
-Requires *putils.map* to use.
+Requires *putils.map* to use.\
+*/colors*\
+Lists the text-color codes, for reference.\
+Requires *putils.colors* to use.
