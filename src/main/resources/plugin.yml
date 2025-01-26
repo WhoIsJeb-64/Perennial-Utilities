@@ -19,7 +19,7 @@ commands:
     permission: putils.map
     permission-message: You do not have permission to use this command.
   colors:
-    description: Lists the codes for the chat colors.
+    description: Lists the color codes.
     usage: /<command>
     permission: putils.colors
     permission-message: You do not have permission to use this command.

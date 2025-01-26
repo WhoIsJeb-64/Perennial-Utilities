@@ -5,6 +5,7 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.perennial.utils.commands.Discord;
 import org.perennial.utils.commands.Map;
+import org.perennial.utils.commands.Colors;
 
 import java.io.File;
 import java.util.logging.Level;
@@ -33,7 +34,7 @@ public class PUtils extends JavaPlugin {
         // Register the commands
         getCommand("discord").setExecutor(new Discord(this));
         getCommand("map").setExecutor(new Map(this));
-        getCommand("colors").setExecutor(new Map(this));
+        getCommand("colors").setExecutor(new Colors(this));
 
         // Register the listeners
         PUtilsListener listener = new PUtilsListener(this);

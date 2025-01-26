@@ -24,7 +24,7 @@ public class Colors implements CommandExecutor {
             return true;
         }
 
-        //Test Change
+        //bruh
         sender.sendMessage("§00-Black §11-Dark Blue §22-Green §33-Dark Aqua §44-Dark Red §55-Dark Purple §66-Gold §77-Gray §88-Dark Gray §99-Blue §aa-Lime §bb-Aqua §cc-Red §dd-Light Purple §ee-Yellow §ff-White");
         return true;
     }
