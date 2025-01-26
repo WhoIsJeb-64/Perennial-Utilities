@@ -1,21 +1,22 @@
-package org.retromc.templateplugin;
+package org.perennial.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.retromc.templateplugin.commands.TemplateTestCommand;
+import org.perennial.utils.commands.Discord;
+import org.perennial.utils.commands.Map;
 
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TemplatePlugin extends JavaPlugin {
+public class PUtils extends JavaPlugin {
     private JavaPlugin plugin;
     private Logger log;
     private String pluginName;
     private PluginDescriptionFile pdf;
 
-    private TemplateConfig configuration;
+    private PUtilsConfig configuration;
 
 
     @Override
@@ -27,13 +28,15 @@ public class TemplatePlugin extends JavaPlugin {
         log.info("[" + pluginName + "] Is Loading, Version: " + pdf.getVersion());
 
         // Load configuration
-        configuration = new TemplateConfig(this, new File(getDataFolder(), "config.yml")); // Load the configuration file from the plugin's data folder
+        configuration = new PUtilsConfig(this, new File(getDataFolder(), "config.yml")); // Load the configuration file from the plugin's data folder
 
         // Register the commands
-        getCommand("testcommand").setExecutor(new TemplateTestCommand(this));
+        getCommand("discord").setExecutor(new Discord(this));
+        getCommand("map").setExecutor(new Map(this));
+        getCommand("colors").setExecutor(new Map(this));
 
         // Register the listeners
-        TemplateListener listener = new TemplateListener(this);
+        PUtilsListener listener = new PUtilsListener(this);
         getServer().getPluginManager().registerEvents(listener, this);
 
         log.info("[" + pluginName + "] Is Loaded, Version: " + pdf.getVersion());
@@ -53,7 +56,7 @@ public class TemplatePlugin extends JavaPlugin {
         Bukkit.getLogger().log(level, "[" + plugin.getDescription().getName() + "] " + message);
     }
 
-    public TemplateConfig getConfig() {
+    public PUtilsConfig getConfig() {
         return configuration;
     }
 }

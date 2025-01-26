@@ -1,22 +1,39 @@
-name: ${project.name}
-description: ${project.description}
-main: org.retromc.templateplugin.TemplatePlugin
-version: ${project.version}
+name: PUtils
+description: A plugin with a few misc features.
+main: org.perennial.utils.PUtils
+version: 1.0
 authors:
-  - JohnyMuffin
+  - WhoIsJeb
 softdepend:
   - Essentials
 
 commands:
-  testcommand:
-    description: A test command for the plugin.
-    usage: /<command> [args]
-    aliases: [tc]
-    permission: myplugin.testcommand
+  discord:
+    description: Links to the server discord.
+    usage: /<command>
+    permission: putils.discord
+    permission-message: You do not have permission to use this command.
+  map:
+    description: Links to the dynmap.
+    usage: /<command>
+    permission: putils.map
+    permission-message: You do not have permission to use this command.
+  colors:
+    description: Lists the codes for the chat colors.
+    usage: /<command>
+    permission: putils.colors
     permission-message: You do not have permission to use this command.
 
 permissions:
-  myplugin.*:
-    description: Gives access to all myplugin commands.
+  putils.*:
+    description: Gives access to all PUtils commands.
     children:
-      myplugin.testcommand: true
+      putils.discord: true
+      putils.map: true
+      putils.colors: true
+  putils.discord:
+    description: Gives access to /discord.
+  putils.map:
+    description: Gives access to /map.
+  putils.colors:
+    description: Gives access to /colors.

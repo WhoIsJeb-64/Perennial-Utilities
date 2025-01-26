@@ -1,7 +1,6 @@
-package org.retromc.templateplugin;
+package org.perennial.utils;
 
 import org.bukkit.util.config.Configuration;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 
@@ -10,11 +9,11 @@ import java.io.File;
  * Extends the {@link Configuration} class to provide additional utility methods for
  * reading and writing configuration options with defaults.
  */
-public class TemplateConfig extends Configuration {
+public class PUtilsConfig extends Configuration {
     private final int configVersion = 1;
 
 
-    private TemplatePlugin plugin;
+    private PUtils plugin;
 
     /**
      * Constructs a new TemplateConfig instance.
@@ -22,7 +21,7 @@ public class TemplateConfig extends Configuration {
      * @param plugin     The plugin instance associated with this configuration.
      * @param configFile The configuration file to be managed.
      */
-    public TemplateConfig(TemplatePlugin plugin, File configFile) {
+    public PUtilsConfig(PUtils plugin, File configFile) {
         super(configFile);
         this.plugin = plugin;
         this.reload();
@@ -43,15 +42,17 @@ public class TemplateConfig extends Configuration {
         // Main options
         generateConfigOption("config-version", configVersion);
 
-        // Plugin options
-        generateConfigOption("settings.test-command.enabled.value", true);
-        generateConfigOption("settings.test-command.enabled.info", "Whether the test command is enabled."); // Informational comment
+        // Command Output options
+        generateConfigOption("settings.discord-command.response.value", "§2Our Discord: §bhttps://discord.gg/[Invite]>");
+        generateConfigOption("settings.discord-command.response.info", "The link to the server´s discord. Make sure it never expires!");
 
-        generateConfigOption("settings.test-command.response.value", "This is the response sent to players when they execute the test command.");
-        generateConfigOption("settings.test-command.response.info", "The response sent to players when they execute the test command."); // Informational comment
+        generateConfigOption("settings.map-command.response.value", "§2Our Dynmap: §bhttp://[IP:Port]]/");
+        generateConfigOption("settings.map-command.response.info", "The link to the server´s dynmap.");
 
-        generateConfigOption("settings.welcome-message.value", "Welcome to the server, %player%!");
-        generateConfigOption("settings.welcome-message.info", "The message sent to players when join the server."); // Informational comment
+        //Stat Tracking Options
+        generateConfigOption("settings.statistics.track-time-played", true);
+        //generateConfigOption("settings.statistics.track-blocks-broken", true);
+        //generateConfigOption("settings.statistics.track-blocks-placed", true);
     }
 
     private void convertToNewConfig() {
@@ -59,8 +60,10 @@ public class TemplateConfig extends Configuration {
 
         // Convert from old config version 0 to new config version 1
         if(this.getString("config-version") == null || Integer.valueOf(this.getString("config-version")) < 1) {
-            convertToNewAddress("settings.test-command-response.value", "settings.test-command.response.value", true);
-            convertToNewAddress("settings.test-command.enabled", "settings.test-command.enabled.value", true);
+            convertToNewAddress("settings.discord-command-response.value", "settings.discord-command.response.value", true);
+            convertToNewAddress("settings.discord-command.enabled", "settings.discord-command.enabled.value", true);
+            convertToNewAddress("settings.map-command-response.value", "settings.map-command.response.value", true);
+            convertToNewAddress("settings.map-command.enabled", "settings.map-command.enabled.value", true);
         }
     }
 
