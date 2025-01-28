@@ -4,6 +4,9 @@ Perennial Utilities (or PUtils) is a b1.7.3 plugin that aims to add some QoL fea
 The plugin is still yet to release, I want to add some more things first.
 I´ll update this as I go, so you all can see what will be in the plugin :)
 
+### Features
+*Fully customizable player join, leave, and kick messages.*
+
 ### Commands
 */discord*\
 Meant to link to the server´s discord if one exists; output is fully configurable.\
