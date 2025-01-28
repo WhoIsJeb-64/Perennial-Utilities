@@ -49,6 +49,16 @@ public class PUtilsConfig extends Configuration {
         generateConfigOption("settings.map-command.response.value", "§2Our Dynmap: §bhttp://[IP:Port]]/");
         generateConfigOption("settings.map-command.response.info", "The link to the server´s dynmap.");
 
+        //Custom join/quit/kick messages
+        generateConfigOption("settings.join-message.value", "§2%player% §ajoined the game.");
+        generateConfigOption("settings.join-message.info", "The message that shows when someone joins.");
+
+        generateConfigOption("settings.quit-message.value", "§4%player% §cleft the game.");
+        generateConfigOption("settings.quit-message.info", "The message that shows when someone leaves.");
+
+        generateConfigOption("settings.kick-message.value", "§6%player% §ewas kicked from the game.");
+        generateConfigOption("settings.kick-message.info", "The message that shows when someone is kicked.");
+
         //Stat Tracking Options
         generateConfigOption("settings.statistics.track-time-played", true);
         //generateConfigOption("settings.statistics.track-blocks-broken", true);
