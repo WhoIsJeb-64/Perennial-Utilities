@@ -58,11 +58,6 @@ public class PUtilsConfig extends Configuration {
 
         generateConfigOption("settings.kick-message.value", "§6%player% §ewas kicked from the game.");
         generateConfigOption("settings.kick-message.info", "The message that shows when someone is kicked.");
-
-        //Stat Tracking Options
-        generateConfigOption("settings.statistics.track-time-played", true);
-        //generateConfigOption("settings.statistics.track-blocks-broken", true);
-        //generateConfigOption("settings.statistics.track-blocks-placed", true);
     }
 
     private void convertToNewConfig() {
