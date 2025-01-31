@@ -1,7 +1,7 @@
 name: PUtils
 description: A plugin with a few misc features.
 main: org.perennial.utils.PUtils
-version: 1.0
+version: 1.1-SNAPSHOT
 authors:
   - WhoIsJeb
 softdepend:
@@ -23,6 +23,11 @@ commands:
     usage: /<command>
     permission: putils.colors
     permission-message: You do not have permission to use this command.
+  stats:
+    description: Lists the sender´s stats.
+    usage: /<command>
+    permission: putils.stats
+    permission-message: You do not have permission to use this command.
 
 permissions:
   putils.*:
@@ -37,3 +42,5 @@ permissions:
     description: Gives access to /map.
   putils.colors:
     description: Gives access to /colors.
+  putils.stats:
+    description: Gives access to /stats.

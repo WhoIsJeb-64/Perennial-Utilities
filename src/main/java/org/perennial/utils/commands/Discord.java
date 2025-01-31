@@ -3,7 +3,7 @@ package org.perennial.utils.commands;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.perennial.utils.PUtilsConfig;
+import org.perennial.utils.data.PUtilsConfig;
 import org.perennial.utils.PUtils;
 
 public class Discord implements CommandExecutor {

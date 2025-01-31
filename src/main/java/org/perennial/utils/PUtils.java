@@ -6,6 +6,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.perennial.utils.commands.Discord;
 import org.perennial.utils.commands.Map;
 import org.perennial.utils.commands.Colors;
+import org.perennial.utils.commands.Stats;
+import org.perennial.utils.data.PUtilsConfig;
+import org.perennial.utils.data.PUtilsStats;
+import org.perennial.utils.listeners.*;
 
 import java.io.File;
 import java.util.logging.Level;
@@ -18,6 +22,7 @@ public class PUtils extends JavaPlugin {
     private PluginDescriptionFile pdf;
 
     private PUtilsConfig configuration;
+    public static PUtilsStats statistics;
 
 
     @Override
@@ -28,17 +33,24 @@ public class PUtils extends JavaPlugin {
         pluginName = pdf.getName();
         log.info("[" + pluginName + "] Is Loading, Version: " + pdf.getVersion());
 
-        // Load configuration
-        configuration = new PUtilsConfig(this, new File(getDataFolder(), "config.yml")); // Load the configuration file from the plugin's data folder
+        configuration = new PUtilsConfig(this, new File(getDataFolder(), "config.yml"));
+        statistics = new PUtilsStats(this, new File(getDataFolder(), "stats.yml"));
 
-        // Register the commands
         getCommand("discord").setExecutor(new Discord(this));
         getCommand("map").setExecutor(new Map(this));
         getCommand("colors").setExecutor(new Colors(this));
+        getCommand("stats").setExecutor(new Stats(this));
 
-        // Register the listeners
-        PUtilsListener listener = new PUtilsListener(this);
-        getServer().getPluginManager().registerEvents(listener, this);
+        final PlayerJoin joinlistener = new PlayerJoin(this);
+        final PlayerQuit quitlistener = new PlayerQuit(this);
+        final PlayerKick kicklistener = new PlayerKick(this);
+        final BlockBreak breaklistener = new BlockBreak(this);
+        final BlockPlace placelistener = new BlockPlace(this);
+        getServer().getPluginManager().registerEvents(joinlistener, this);
+        getServer().getPluginManager().registerEvents(quitlistener, this);
+        getServer().getPluginManager().registerEvents(kicklistener, this);
+        getServer().getPluginManager().registerEvents(breaklistener, this);
+        getServer().getPluginManager().registerEvents(placelistener, this);
 
         log.info("[" + pluginName + "] Is Loaded, Version: " + pdf.getVersion());
     }
@@ -47,8 +59,8 @@ public class PUtils extends JavaPlugin {
     public void onDisable() {
         log.info("[" + pluginName + "] Is Unloading, Version: " + pdf.getVersion());
 
-        // Save configuration
-        //config.save(); // Save the configuration file to disk. This should only be necessary if the configuration cam be modified during runtime.
+        //configuration.save();
+        statistics.save();
 
         log.info("[" + pluginName + "] Is Unloaded, Version: " + pdf.getVersion());
     }
@@ -59,5 +71,9 @@ public class PUtils extends JavaPlugin {
 
     public PUtilsConfig getConfig() {
         return configuration;
+    }
+
+    public static PUtilsStats getStats() {
+        return statistics;
     }
 }
