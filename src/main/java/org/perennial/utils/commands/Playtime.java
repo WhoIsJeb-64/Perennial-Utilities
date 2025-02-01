@@ -8,13 +8,13 @@ import org.perennial.utils.data.PUtilsConfig;
 
 import static org.perennial.utils.PUtils.statistics;
 
-public class Stats implements CommandExecutor {
+public class Playtime implements CommandExecutor {
 
     private final PUtils plugin;
 
     private final PUtilsConfig config;
 
-    public Stats(PUtils plugin) {
+    public Playtime(PUtils plugin) {
         this.plugin = plugin;
         this.config = plugin.getConfig();
     }
@@ -27,10 +27,7 @@ public class Stats implements CommandExecutor {
         }
 
         statistics.save();
-        sender.sendMessage("§3========§b " + sender.getName() + "'s Stats: §3========");
-        sender.sendMessage("§4» §cTime Played:§3 " + statistics.getStatString(sender.getName() + ".time-played") + "h");
-        sender.sendMessage("§4» §cBlocks Broken:§3 " + statistics.getStatString(sender.getName() + ".blocks-broken"));
-        sender.sendMessage("§4» §cBlocks Placed:§3 " + statistics.getStatString(sender.getName() + ".blocks-placed"));
+        sender.sendMessage("§b" + sender.getName() + "'s§c Time Played:§3 " + statistics.getStatString(sender.getName() + ".time-played") + "h");
         return true;
     }
 }

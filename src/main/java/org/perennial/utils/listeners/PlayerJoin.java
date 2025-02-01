@@ -12,7 +12,7 @@ import static org.perennial.utils.PUtils.statistics;
 public class PlayerJoin implements Listener {
     private PUtils plugin;
     private PUtilsConfig config;
-    public static long startTime = System.currentTimeMillis() / 1000;
+    public static long startTime = System.currentTimeMillis() / 3600000;
 
     public PlayerJoin(PUtils plugin) {
         this.plugin = plugin;

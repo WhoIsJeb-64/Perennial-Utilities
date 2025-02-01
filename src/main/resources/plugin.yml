@@ -28,6 +28,11 @@ commands:
     usage: /<command>
     permission: putils.stats
     permission-message: You do not have permission to use this command.
+  playtime:
+    description: Lists the sender´s playtime.
+    usage: /<command>
+    permission: putils.stats
+    permission-message: You do not have permission to use this command.
 
 permissions:
   putils.*:
@@ -36,6 +41,7 @@ permissions:
       putils.discord: true
       putils.map: true
       putils.colors: true
+      putils.stats: true
   putils.discord:
     description: Gives access to /discord.
   putils.map:
@@ -43,4 +49,4 @@ permissions:
   putils.colors:
     description: Gives access to /colors.
   putils.stats:
-    description: Gives access to /stats.
+    description: Gives access to /stats and /playtime.

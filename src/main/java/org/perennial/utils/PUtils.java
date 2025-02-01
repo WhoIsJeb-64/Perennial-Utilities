@@ -3,10 +3,7 @@ package org.perennial.utils;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.perennial.utils.commands.Discord;
-import org.perennial.utils.commands.Map;
-import org.perennial.utils.commands.Colors;
-import org.perennial.utils.commands.Stats;
+import org.perennial.utils.commands.*;
 import org.perennial.utils.data.PUtilsConfig;
 import org.perennial.utils.data.PUtilsStats;
 import org.perennial.utils.listeners.*;
@@ -40,6 +37,7 @@ public class PUtils extends JavaPlugin {
         getCommand("map").setExecutor(new Map(this));
         getCommand("colors").setExecutor(new Colors(this));
         getCommand("stats").setExecutor(new Stats(this));
+        getCommand("playtime").setExecutor(new Playtime(this));
 
         final PlayerJoin joinlistener = new PlayerJoin(this);
         final PlayerQuit quitlistener = new PlayerQuit(this);
