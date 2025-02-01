@@ -13,7 +13,6 @@ import static org.perennial.utils.PUtils.statistics;
 public class BlockBreak  implements Listener {
     private PUtils plugin;
     private PUtilsConfig config;
-    public static int blocksBroken = 0;
 
     public BlockBreak(PUtils plugin) {
         this.plugin = plugin;
@@ -23,15 +22,8 @@ public class BlockBreak  implements Listener {
     @EventHandler(priority = Event.Priority.Highest)
     public void onBlockBreak(BlockBreakEvent event) {
 
-        //Increment the player´s blocks-broken count
-        statistics.load();
         String playerName = event.getPlayer().getName();
-        blocksBroken = blocksBroken + 1;
-        getStats().setProperty(playerName + ".blocks-broken", blocksBroken);
+        statistics.setProperty(playerName + ".blocks-broken", Integer.sum(getStats().getStatInteger(playerName + ".blocks-broken"), 1));
         statistics.save();
-    }
-
-    public static Integer getBlocksBroken() {
-        return blocksBroken;
     }
 }

@@ -13,7 +13,6 @@ import static org.perennial.utils.PUtils.statistics;
 public class BlockPlace implements Listener {
     private PUtils plugin;
     private PUtilsConfig config;
-    public static int blocksPlaced = 0;
 
     public BlockPlace(PUtils plugin) {
         this.plugin = plugin;
@@ -23,15 +22,8 @@ public class BlockPlace implements Listener {
     @EventHandler(priority = Event.Priority.Highest)
     public void onBlockPlace(BlockPlaceEvent event) {
 
-        //Increment the player´s blocks-placed count
-        statistics.load();
         String playerName = event.getPlayer().getName();
-        blocksPlaced = blocksPlaced + 1;
-        getStats().setProperty(playerName + ".blocks-placed", blocksPlaced);
+        statistics.setProperty(playerName + ".blocks-placed", Integer.sum(getStats().getStatInteger(playerName + ".blocks-placed"), 1));
         statistics.save();
-    }
-
-    public static Integer getBlocksPlaced() {
-        return blocksPlaced;
     }
 }
