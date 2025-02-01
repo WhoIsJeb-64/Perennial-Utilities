@@ -21,7 +21,7 @@ public class PlayerKick implements Listener {
     public void onPlayerKick(PlayerKickEvent event) {
 
         //Kick message
-        String message = plugin.getConfig().getConfigString("settings.kick-message.value");
+        String message = plugin.getConfig().getConfigString("settings.kick-message");
         message = message.replace("%player%", event.getPlayer().getName());
         event.setLeaveMessage((message));
     }

@@ -12,6 +12,7 @@ import static org.perennial.utils.PUtils.statistics;
 public class PlayerJoin implements Listener {
     private PUtils plugin;
     private PUtilsConfig config;
+    public static long startTime = System.currentTimeMillis() / 1000;
 
     public PlayerJoin(PUtils plugin) {
         this.plugin = plugin;
@@ -23,7 +24,7 @@ public class PlayerJoin implements Listener {
 
         //Join message
         String playerName = event.getPlayer().getName();
-        String message = plugin.getConfig().getConfigString("settings.join-message.value");
+        String message = plugin.getConfig().getConfigString("settings.join-message");
         message = message.replace("%player%", playerName);
         event.setJoinMessage((message));
 
@@ -31,5 +32,9 @@ public class PlayerJoin implements Listener {
         statistics.generateStatEntry(playerName + ".blocks-broken", 0);
         statistics.generateStatEntry(playerName + ".blocks-placed", 0);
         statistics.save();
+    }
+
+    public static long getStartTime() {
+        return startTime;
     }
 }

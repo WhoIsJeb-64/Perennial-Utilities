@@ -28,6 +28,7 @@ public class Stats implements CommandExecutor {
 
         statistics.save();
         sender.sendMessage("§3========§b " + sender.getName() + "'s Stats: §3========");
+        sender.sendMessage("§4» §cTime Played:§3 " + statistics.getStatString(sender.getName() + ".time-played") + "s");
         sender.sendMessage("§4» §cBlocks Broken:§3 " + statistics.getStatString(sender.getName() + ".blocks-broken"));
         sender.sendMessage("§4» §cBlocks Placed:§3 " + statistics.getStatString(sender.getName() + ".blocks-placed"));
         return true;

@@ -7,11 +7,14 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.perennial.utils.PUtils;
 import org.perennial.utils.data.PUtilsConfig;
 
+import static org.perennial.utils.PUtils.getStats;
 import static org.perennial.utils.PUtils.statistics;
+import static org.perennial.utils.listeners.PlayerJoin.getStartTime;
 
 public class PlayerQuit implements Listener {
     private PUtils plugin;
     private PUtilsConfig config;
+    long startTime = getStartTime();
 
     public PlayerQuit(PUtils plugin) {
         this.plugin = plugin;
@@ -22,11 +25,14 @@ public class PlayerQuit implements Listener {
     public void onPlayerQuit(PlayerQuitEvent event) {
 
         //Quit message
-        String message = plugin.getConfig().getConfigString("settings.quit-message.value");
+        String message = plugin.getConfig().getConfigString("settings.quit-message");
         message = message.replace("%player%", event.getPlayer().getName());
         event.setQuitMessage((message));
 
         String playerName = event.getPlayer().getName();
+        long endTime = System.currentTimeMillis() / 1000;
+        long gainedTime = endTime - startTime;
+        statistics.setProperty(playerName + ".time-played", Long.sum(getStats().getStatLong(playerName + ".time-played"), gainedTime));
         statistics.save();
     }
 }

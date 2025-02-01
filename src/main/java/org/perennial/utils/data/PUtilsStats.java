@@ -21,9 +21,6 @@ public class PUtilsStats extends Configuration {
     }
 
     public void write() {
-        //generateStatEntries("%player%.time-played", 0);
-        //generateStatEntries("%player%.blocks-broken", 0);
-        //generateStatEntries("%player%.blocks-placed", 0);
     }
 
     public void generateStatEntry(String key, Object defaultValue) {
@@ -47,7 +44,7 @@ public class PUtilsStats extends Configuration {
         return Integer.valueOf(getStatString(key));
     }
 
-    //public void writeStatEntry(String key, Object value) {
-    //    this.setProperty(key, Integer.sum(getStatInteger(), 1));
-    //}
+    public Long getStatLong(String key) {
+        return Long.valueOf(getStatString(key));
+    }
 }
