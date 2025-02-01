@@ -35,6 +35,7 @@ public class PUtils extends JavaPlugin {
 
         configuration = new PUtilsConfig(this, new File(getDataFolder(), "config.yml"));
         statistics = new PUtilsStats(this, new File(getDataFolder(), "stats.yml"));
+        statistics.load();
 
         getCommand("discord").setExecutor(new Discord(this));
         getCommand("map").setExecutor(new Map(this));

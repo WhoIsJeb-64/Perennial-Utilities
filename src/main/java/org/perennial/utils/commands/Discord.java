@@ -24,7 +24,7 @@ public class Discord implements CommandExecutor {
             return true;
         }
 
-        String response = config.getConfigString("settings.discord-command.response.value");
+        String response = config.getConfigString("settings.discord-command.response");
         sender.sendMessage(response);
         return true;
     }

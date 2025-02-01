@@ -29,6 +29,7 @@ public class PlayerQuit implements Listener {
         message = message.replace("%player%", event.getPlayer().getName());
         event.setQuitMessage((message));
 
+        statistics.load();
         String playerName = event.getPlayer().getName();
         long endTime = System.currentTimeMillis() / 1000;
         timePlayed = endTime - getStartTime();

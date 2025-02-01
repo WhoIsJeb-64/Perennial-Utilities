@@ -24,7 +24,7 @@ public class Map implements CommandExecutor {
             return true;
         }
 
-        String response = config.getConfigString("settings.map-command.response.value");
+        String response = config.getConfigString("settings.map-command.response");
         sender.sendMessage(response);
         return true;
     }
