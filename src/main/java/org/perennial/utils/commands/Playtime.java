@@ -35,7 +35,7 @@ public class Playtime implements CommandExecutor {
             df.setRoundingMode(RoundingMode.DOWN);
             float hoursPlayed = Float.parseFloat(df.format((float) statistics.getStatLong(sender.getName() + ".time-played") / 3600));
 
-            sender.sendMessage("§b" + sender.getName() + "'s §cTime Played:§3 " + hoursPlayed + "h");
+            sender.sendMessage("§9" + sender.getName() + "'s §9Time Played:§3 " + hoursPlayed + "h");
             return true;
         }
 
@@ -46,7 +46,7 @@ public class Playtime implements CommandExecutor {
         df.setRoundingMode(RoundingMode.DOWN);
         float hoursPlayed = Float.parseFloat(df.format((float) statistics.getStatLong(subject + ".time-played") / 3600));
 
-        sender.sendMessage("§b" + subject + "'s §cTime Played:§3 " + hoursPlayed + "h");
+        sender.sendMessage("§9" + subject + "'s §9Time Played:§3 " + hoursPlayed + "h");
         return true;
     }
 }
