@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="PUtils:jar">
+    <output-path>$PROJECT_DIR$/build</output-path>
+    <root id="archive" name="Perennial-Utilities.jar">
+      <element id="module-output" name="Poseidon-Plugin-Template" />
+    </root>
+  </artifact>
+</component>
