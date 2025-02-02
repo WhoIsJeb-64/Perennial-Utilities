@@ -21,7 +21,7 @@ public class PlayerQuit implements Listener {
         this.config = plugin.getConfig();
     }
 
-    @EventHandler(priority = Event.Priority.High)
+    @EventHandler(priority = Event.Priority.Highest)
     public void onPlayerQuit(PlayerQuitEvent event) {
 
         //Quit message
