@@ -1,5 +1,5 @@
 # Perennial Utilities
-## v1.1
+## v1.1.1
 ### About
 Perennial Utilities (or PUtils) is a b1.7.3 plugin that add some QoL features to slightly improve the experience of playing on servers.\
 More features are planned for future versions.
@@ -19,9 +19,10 @@ Requires *putils.map* to use.\
 Lists the text-color codes, for reference.\
 Requires *putils.colors* to use.\
 **/stats**\
-Lists the aforementioned stats of the sender.\
-The playtime is displayed in hours.\
+Lists the aforementioned stats of the sender or a specified player.\
 Requires *putils.stats* to use.\
+Example of output:\
+![image](https://github.com/user-attachments/assets/3f5e31fd-5e33-430e-9b4c-29c467c7e305)\
 **/playtime**\
-Displays just the playtime of the sender.\
+Displays just the playtime of the sender or a specified player.\
 Requires *putils.stats* to use.
