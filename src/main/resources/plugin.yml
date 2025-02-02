@@ -1,7 +1,7 @@
 name: PUtils
 description: A plugin with a few misc features.
 main: org.perennial.utils.PUtils
-version: 1.1.1
+version: 1.2-SNAPSHOT
 authors:
   - WhoIsJeb
 softdepend:
@@ -34,6 +34,11 @@ commands:
     usage: /<command> <player>
     permission: putils.stats
     permission-message: You do not have permission to use this command.
+  seen:
+    description: Lists the last time specified player was online. (yyyy-MM-dd HH:mm UTC)
+    usage: /<command> <player>
+    permission: putils.seen
+    permission-message: You do not have permission to use this command.
 
 permissions:
   putils.*:
@@ -51,3 +56,5 @@ permissions:
     description: Gives access to /colors.
   putils.stats:
     description: Gives access to /stats and /playtime.
+  putils.seen:
+    description: Gives access to /seen.

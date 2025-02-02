@@ -38,6 +38,7 @@ public class PUtils extends JavaPlugin {
         getCommand("colors").setExecutor(new Colors(this));
         getCommand("stats").setExecutor(new Stats(this));
         getCommand("playtime").setExecutor(new Playtime(this));
+        getCommand("seen").setExecutor(new Seen(this));
 
         final PlayerJoin joinlistener = new PlayerJoin(this);
         final PlayerQuit quitlistener = new PlayerQuit(this);

@@ -15,6 +15,7 @@ public class PlayerQuit implements Listener {
     private PUtils plugin;
     private PUtilsConfig config;
     long startTime = getStartTime();
+    public static long lastSeen = System.currentTimeMillis();
 
     public PlayerQuit(PUtils plugin) {
         this.plugin = plugin;
@@ -30,9 +31,14 @@ public class PlayerQuit implements Listener {
         event.setQuitMessage((message));
 
         String playerName = event.getPlayer().getName();
-        long endTime = System.currentTimeMillis() / 1000;
+        long endTime = System.currentTimeMillis() / 1000L;
         long gainedTime = endTime - startTime;
         statistics.setProperty(playerName + ".time-played", Long.sum(getStats().getStatLong(playerName + ".time-played"), gainedTime));
+        statistics.setProperty(playerName + ".last-seen", lastSeen);
         statistics.save();
+    }
+
+    public static long getLastSeen() {
+        return lastSeen;
     }
 }

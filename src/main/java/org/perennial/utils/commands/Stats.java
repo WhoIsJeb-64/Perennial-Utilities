@@ -56,7 +56,7 @@ public class Stats implements CommandExecutor {
         statistics.save();
         DecimalFormat df = new DecimalFormat("##.##");
         df.setRoundingMode(RoundingMode.DOWN);
-        float hoursPlayed = Float.parseFloat(df.format((float) statistics.getStatLong(subject + ".time-played") / 3600));
+        float hoursPlayed = Float.parseFloat(df.format((float) statistics.getStatLong(subject + ".time-played") / 3600L));
 
         double balance;
         try {
