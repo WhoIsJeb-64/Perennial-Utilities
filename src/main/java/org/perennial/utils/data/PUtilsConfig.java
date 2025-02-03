@@ -29,10 +29,19 @@ public class PUtilsConfig extends Configuration {
     }
 
     /**
+     * Reloads the configuration by loading the file, writing defaults, and saving changes.
+     */
+    public void reload() {
+        this.load();
+        this.write();
+        this.save();
+    }
+
+    /**
      * Writes default configuration options to the file.
      * Ensures that default options are added when the file is loaded.
      */
-    private void write() {
+    public void write() {
         // Convert old configuration keys to new keys if necessary
         if (this.getString("config-version") == null || Integer.valueOf(this.getString("config-version")) < configVersion) {
             this.plugin.logger(java.util.logging.Level.INFO, "Converting config to new version (" + configVersion + ")...");
@@ -51,6 +60,9 @@ public class PUtilsConfig extends Configuration {
         generateConfigOption("settings.join-message", "§2%player% §ajoined the game.");
         generateConfigOption("settings.quit-message", "§4%player% §cleft the game.");
         generateConfigOption("settings.kick-message", "§6%player% §ewas kicked from the game.");
+
+        //test property
+        generateConfigOption("settings.test-property", false);
     }
 
     private void convertToNewConfig() {
@@ -64,15 +76,6 @@ public class PUtilsConfig extends Configuration {
             convertToNewAddress("settings.quit-message.value", "settings.quit-message", true);
             convertToNewAddress("settings.kick-message.value", "settings.kick-message", true);
         }
-    }
-
-    /**
-     * Reloads the configuration by loading the file, writing defaults, and saving changes.
-     */
-    private void reload() {
-        this.load();
-        this.write();
-        this.save();
     }
 
     /**

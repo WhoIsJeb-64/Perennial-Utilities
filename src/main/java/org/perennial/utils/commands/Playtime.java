@@ -19,7 +19,6 @@ public class Playtime implements CommandExecutor {
     public Playtime(PUtils plugin) {
         this.plugin = plugin;
         this.config = plugin.getConfig();
-
     }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

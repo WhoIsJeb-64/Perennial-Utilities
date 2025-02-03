@@ -18,7 +18,7 @@ public class PUtils extends JavaPlugin {
     private String pluginName;
     private PluginDescriptionFile pdf;
 
-    private PUtilsConfig configuration;
+    public PUtilsConfig configuration;
     public static PUtilsStats statistics;
 
 
@@ -39,6 +39,7 @@ public class PUtils extends JavaPlugin {
         getCommand("stats").setExecutor(new Stats(this));
         getCommand("playtime").setExecutor(new Playtime(this));
         getCommand("seen").setExecutor(new Seen(this));
+        getCommand("putils").setExecutor(new PUtilsCommand(this));
 
         final PlayerJoin joinlistener = new PlayerJoin(this);
         final PlayerQuit quitlistener = new PlayerQuit(this);
@@ -58,7 +59,7 @@ public class PUtils extends JavaPlugin {
     public void onDisable() {
         log.info("[" + pluginName + "] Is Unloading, Version: " + pdf.getVersion());
 
-        //configuration.save();
+        configuration.save();
         statistics.save();
 
         log.info("[" + pluginName + "] Is Unloaded, Version: " + pdf.getVersion());

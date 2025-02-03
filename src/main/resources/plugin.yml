@@ -39,6 +39,10 @@ commands:
     usage: /<command> <player>
     permission: putils.seen
     permission-message: You do not have permission to use this command.
+  putils:
+    description: Lists the version/author, or a list of the commands.
+    usage: /<command>
+    aliases: [pu]
 
 permissions:
   putils.*:
@@ -48,6 +52,8 @@ permissions:
       putils.map: true
       putils.colors: true
       putils.stats: true
+      putils.seen: true
+      putils.fakeop: true
   putils.discord:
     description: Gives access to /discord.
   putils.map:
@@ -58,3 +64,5 @@ permissions:
     description: Gives access to /stats and /playtime.
   putils.seen:
     description: Gives access to /seen.
+  putils.debug:
+    description: Gives access to more subcommands of /putils..

@@ -7,7 +7,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.perennial.utils.PUtils;
 import org.perennial.utils.data.PUtilsConfig;
 
-import static org.perennial.utils.PUtils.getStats;
 import static org.perennial.utils.PUtils.statistics;
 import static org.perennial.utils.listeners.PlayerJoin.getStartTime;
 
@@ -33,7 +32,8 @@ public class PlayerQuit implements Listener {
         String playerName = event.getPlayer().getName();
         long endTime = System.currentTimeMillis() / 1000L;
         long gainedTime = endTime - startTime;
-        statistics.setProperty(playerName + ".time-played", Long.sum(getStats().getStatLong(playerName + ".time-played"), gainedTime));
+        long timePlayed = statistics.getStatLong(playerName + ".time-played");
+        statistics.setProperty(playerName + ".time-played", timePlayed + gainedTime);
         statistics.setProperty(playerName + ".last-seen", lastSeen);
         statistics.save();
     }
