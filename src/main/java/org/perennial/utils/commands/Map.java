@@ -24,7 +24,8 @@ public class Map implements CommandExecutor {
             return true;
         }
 
-        String response = config.getConfigString("settings.map-command.response");
+        //Link to server's dynmap
+        String response = config.getConfigString("/map-response");
         sender.sendMessage(response);
         return true;
     }

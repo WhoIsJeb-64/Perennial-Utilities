@@ -19,13 +19,14 @@ public class PUtilsCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length < 1) {
-            sender.sendMessage("§2======= §aPerennial-Utilities v1.2 §2=======");
+            sender.sendMessage("§2====== §aPerennial-Utilities v1.2-SNAPSHOT §2======");
             sender.sendMessage("§2» §aAuthor:§7 WhoIsJeb");
             sender.sendMessage("§2» §7Use §a/putils ?§7 for a list of its commands.");
             return true;
         }
 
         if (args[0].equalsIgnoreCase("?")) {
+            sender.sendMessage("§2=============== §aPUtils Commands §2===============");
             sender.sendMessage("§a/colors§7 Lists the 16 text colors and their codes.");
             sender.sendMessage("§a/discord§7 Links to the server's discord.");
             sender.sendMessage("§a/map§7 Lists to the server's dynmap.");
@@ -43,30 +44,48 @@ public class PUtilsCommand implements CommandExecutor {
 
             if (args[1].equalsIgnoreCase("set")) {
 
-                String targetProperty = args[2];
-                if (args[2].isEmpty()) {
-                    sender.sendMessage("§cSelect a property to modify!");
+                if (args[2].isEmpty() || args[3].isEmpty()) {
+                    sender.sendMessage("§c/putils config set <property> <value>");
                     return true;
                 }
+                String targetProperty = args[2];
                 String targetValue = args[3];
-                if (args[3].isEmpty()) {
-                    sender.sendMessage("§cSpecify a value to set§4 " + targetProperty + "§c to!");
+
+                if (config.getConfigOption(targetProperty) == null) {
+                    sender.sendMessage("§cProperty§4 " + targetProperty + "§c does not exist!");
                     return true;
                 }
 
                 config.setProperty(targetProperty, targetValue);
-                config.reload();
-                sender.sendMessage("§aValue§2 " + targetProperty + "§a set to§2 " + targetValue + "!");
-
+                PUtils.configuration.save();
+                sender.sendMessage("§aValue§2 " + targetProperty + "§a set to§2 " + targetValue + "§a!");
                 return true;
             }
 
-            sender.sendMessage("§cInvalid or no subargument!");
+            if (args[1].equalsIgnoreCase("reload")) {
+                PUtils.configuration.reload();
+                sender.sendMessage("§aPerennial-Utilities config reloaded successfully!");
+                return true;
+            }
+
+            sender.sendMessage("§cNot enough arguments!");
+            return true;
+        }
+
+        if (args[0].equalsIgnoreCase("reload")) {
+            if (!sender.hasPermission("putils.debug") && !sender.isOp()) {
+                sender.sendMessage("§cYou do not have permission to execute this sub-command!");
+                return true;
+            }
+
+            PUtils.configuration.reload();
+            PUtils.statistics.reload();
+            sender.sendMessage("§aPerennial-Utilities reloaded successfully!");
+
             return true;
         }
 
         sender.sendMessage("§cInvalid argument!");
-
         return true;
     }
 }

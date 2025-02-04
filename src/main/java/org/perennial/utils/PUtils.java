@@ -18,7 +18,7 @@ public class PUtils extends JavaPlugin {
     private String pluginName;
     private PluginDescriptionFile pdf;
 
-    public PUtilsConfig configuration;
+    public static PUtilsConfig configuration;
     public static PUtilsStats statistics;
 
 
@@ -30,9 +30,11 @@ public class PUtils extends JavaPlugin {
         pluginName = pdf.getName();
         log.info("[" + pluginName + "] Is Loading, Version: " + pdf.getVersion());
 
+        //Create config.yml and stats.yml
         configuration = new PUtilsConfig(this, new File(getDataFolder(), "config.yml"));
         statistics = new PUtilsStats(this, new File(getDataFolder(), "stats.yml"));
 
+        //register commands
         getCommand("discord").setExecutor(new Discord(this));
         getCommand("map").setExecutor(new Map(this));
         getCommand("colors").setExecutor(new Colors(this));
@@ -41,16 +43,19 @@ public class PUtils extends JavaPlugin {
         getCommand("seen").setExecutor(new Seen(this));
         getCommand("putils").setExecutor(new PUtilsCommand(this));
 
+        //register listeners
         final PlayerJoin joinlistener = new PlayerJoin(this);
         final PlayerQuit quitlistener = new PlayerQuit(this);
         final PlayerKick kicklistener = new PlayerKick(this);
         final BlockBreak breaklistener = new BlockBreak(this);
         final BlockPlace placelistener = new BlockPlace(this);
+        //final PlayerChat chatlistener = new PlayerChat(this);
         getServer().getPluginManager().registerEvents(joinlistener, this);
         getServer().getPluginManager().registerEvents(quitlistener, this);
         getServer().getPluginManager().registerEvents(kicklistener, this);
         getServer().getPluginManager().registerEvents(breaklistener, this);
         getServer().getPluginManager().registerEvents(placelistener, this);
+        //getServer().getPluginManager().registerEvents(chatlistener, this);
 
         log.info("[" + pluginName + "] Is Loaded, Version: " + pdf.getVersion());
     }

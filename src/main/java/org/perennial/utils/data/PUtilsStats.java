@@ -14,7 +14,7 @@ public class PUtilsStats extends Configuration {
         this.reload();
     }
 
-    private void reload() {
+    public void reload() {
         this.load();
         this.write();
         this.save();

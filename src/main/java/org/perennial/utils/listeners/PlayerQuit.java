@@ -26,9 +26,10 @@ public class PlayerQuit implements Listener {
 
         //Quit message
         String message = plugin.getConfig().getConfigString("settings.quit-message");
-        message = message.replace("%player%", event.getPlayer().getName());
+        message = message.replace("%p%", event.getPlayer().getName());
         event.setQuitMessage((message));
 
+        //Add length of play session to playtime and set last-seen
         String playerName = event.getPlayer().getName();
         long endTime = System.currentTimeMillis() / 1000L;
         long gainedTime = endTime - startTime;

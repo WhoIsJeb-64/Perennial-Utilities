@@ -29,7 +29,7 @@ public class Seen implements CommandExecutor {
         }
 
         if (args.length < 1) {
-            sender.sendMessage("§cNot enough arguments!");
+            sender.sendMessage("§cSpecify a player's username!");
             return true;
         }
 

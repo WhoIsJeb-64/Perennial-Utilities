@@ -11,7 +11,7 @@ import java.io.File;
  * reading and writing configuration options with defaults.
  */
 public class PUtilsConfig extends Configuration {
-    private final int configVersion = 2;
+    private final int configVersion = 3;
 
 
     private PUtils plugin;
@@ -53,28 +53,25 @@ public class PUtilsConfig extends Configuration {
         generateConfigOption("config-version", configVersion);
 
         // Command Output options
-        generateConfigOption("settings.discord-command.response", "§2Our Discord: §bhttps://discord.gg/[Invite]>");
-        generateConfigOption("settings.map-command.response", "§2Our Dynmap: §bhttp://[IP:Port]]/");
+        generateConfigOption("/discord-response", "§2Our Discord: §bhttps://discord.gg/[Invite]>");
+        generateConfigOption("/map-response", "§2Our Dynmap: §bhttp://[IP:Port]]/");
 
         //Custom join/quit/kick messages
-        generateConfigOption("settings.join-message", "§2%player% §ajoined the game.");
-        generateConfigOption("settings.quit-message", "§4%player% §cleft the game.");
-        generateConfigOption("settings.kick-message", "§6%player% §ewas kicked from the game.");
-
-        //test property
-        generateConfigOption("settings.test-property", false);
+        generateConfigOption("join-message", "§2%p% §ajoined the game.");
+        generateConfigOption("quit-message", "§4%p% §cleft the game.");
+        generateConfigOption("kick-message", "§6%p% §ewas kicked from the game.");
     }
 
     private void convertToNewConfig() {
         // Convert old configuration keys to new keys
 
-        // Convert from old config version 0 to new config version 2
-        if(this.getString("config-version") == null || Integer.valueOf(this.getString("config-version")) < 2) {
-            convertToNewAddress("settings.discord-command-response.value", "settings.discord-command.response", true);
-            convertToNewAddress("settings.map-command-response.value", "settings.map-command.response", true);
-            convertToNewAddress("settings.join-message.value", "settings.join-message", true);
-            convertToNewAddress("settings.quit-message.value", "settings.quit-message", true);
-            convertToNewAddress("settings.kick-message.value", "settings.kick-message", true);
+        // Convert from old config version 0 to new config version 3
+        if(this.getString("config-version") == null || Integer.valueOf(this.getString("config-version")) < 3) {
+            convertToNewAddress("/discord-response", "settings.discord-command.response", true);
+            convertToNewAddress("/map-response", "settings.map-command.response", true);
+            convertToNewAddress("join-message", "settings.join-message", true);
+            convertToNewAddress("quit-message", "settings.quit-message", true);
+            convertToNewAddress("kick-message", "settings.kick-message", true);
         }
     }
 

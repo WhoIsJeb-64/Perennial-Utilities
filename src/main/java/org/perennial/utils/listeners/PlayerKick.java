@@ -27,9 +27,10 @@ public class PlayerKick implements Listener {
 
         //Kick message
         String message = plugin.getConfig().getConfigString("settings.kick-message");
-        message = message.replace("%player%", event.getPlayer().getName());
+        message = message.replace("%p%", event.getPlayer().getName());
         event.setLeaveMessage((message));
 
+        //Add length of play session to playtime and set last-seen
         String playerName = event.getPlayer().getName();
         long endTime = System.currentTimeMillis() / 1000;
         long gainedTime = endTime - startTime;

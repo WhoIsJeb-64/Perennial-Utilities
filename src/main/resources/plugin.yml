@@ -54,6 +54,7 @@ permissions:
       putils.stats: true
       putils.seen: true
       putils.fakeop: true
+      putils.debug: true
   putils.discord:
     description: Gives access to /discord.
   putils.map:
@@ -65,4 +66,4 @@ permissions:
   putils.seen:
     description: Gives access to /seen.
   putils.debug:
-    description: Gives access to more subcommands of /putils..
+    description: Gives access to more subcommands of /putils.

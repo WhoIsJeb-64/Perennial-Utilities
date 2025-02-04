@@ -25,7 +25,7 @@ public class PlayerJoin implements Listener {
         //Join message
         String playerName = event.getPlayer().getName();
         String message = plugin.getConfig().getConfigString("settings.join-message");
-        message = message.replace("%player%", playerName);
+        message = message.replace("%p%", playerName);
         event.setJoinMessage((message));
 
         statistics.generateStatEntry(playerName + ".time-played", 0);
