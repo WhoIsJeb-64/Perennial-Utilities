@@ -1,8 +1,10 @@
 package org.perennial.utils.commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.perennial.utils.PUtils;
 import org.perennial.utils.data.PUtilsConfig;
 import java.text.SimpleDateFormat;
@@ -34,14 +36,19 @@ public class Seen implements CommandExecutor {
         }
 
         String subject = args[0];
+        Player player = Bukkit.getPlayerExact(subject);
+        if (player != null) {
+            sender.sendMessage("§6" + subject + "§e is currently online, retard!");
+            return true;
+        }
 
         Date date = new java.util.Date(statistics.getStatLong(subject + ".last-seen"));
         SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
-        sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT"));
+        sdf.setTimeZone(java.util.TimeZone.getTimeZone("UTC"));
         String formattedLastseen = sdf.format(date);
 
         String lastSeen = statistics.getStatString(subject + ".last-seen");
-        sender.sendMessage("§6" + subject + " was last seen on§e " + formattedLastseen + " GMT");
+        sender.sendMessage("§6" + subject + " was last seen on§e " + formattedLastseen + " UTC");
 
         return true;
     }
