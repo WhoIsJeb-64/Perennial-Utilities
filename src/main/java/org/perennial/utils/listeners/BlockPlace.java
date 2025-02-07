@@ -7,7 +7,6 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.perennial.utils.PUtils;
 import org.perennial.utils.data.PUtilsConfig;
 
-import static org.perennial.utils.PUtils.getStats;
 import static org.perennial.utils.PUtils.statistics;
 
 public class BlockPlace implements Listener {
@@ -23,7 +22,7 @@ public class BlockPlace implements Listener {
     public void onBlockPlace(BlockPlaceEvent event) {
 
         String playerName = event.getPlayer().getName();
-        statistics.setProperty(playerName + ".blocks-placed", Integer.sum(getStats().getStatInteger(playerName + ".blocks-placed"), 1));
+        statistics.incrementStatInt(playerName + ".blocks-placed");
         statistics.save();
     }
 }

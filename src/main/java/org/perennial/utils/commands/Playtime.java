@@ -27,23 +27,16 @@ public class Playtime implements CommandExecutor {
             return true;
         }
 
+        String subject; //Game assumes that the subject is the sender if none is specified
         if (args.length < 1) {
-
-            statistics.save();
-            DecimalFormat df = new DecimalFormat("##.##");
-            df.setRoundingMode(RoundingMode.DOWN);
-            float hoursPlayed = Float.parseFloat(df.format((float) statistics.getStatLong(sender.getName() + ".time-played") / 3600));
-
-            sender.sendMessage("§9" + sender.getName() + "'s §9Time Played:§3 " + hoursPlayed + "h");
-            return true;
+            subject = sender.getName();
+        } else {
+            subject = args[0];
         }
 
-        String subject = args[0];
-
-        statistics.save();
         DecimalFormat df = new DecimalFormat("##.##");
         df.setRoundingMode(RoundingMode.DOWN);
-        float hoursPlayed = Float.parseFloat(df.format((float) statistics.getStatLong(subject + ".time-played") / 3600));
+        float hoursPlayed = Float.parseFloat(df.format((float) statistics.getStatLong(subject + ".time-played") / 108000000));
 
         sender.sendMessage("§9" + subject + "'s §9Time Played:§3 " + hoursPlayed + "h");
         return true;

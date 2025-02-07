@@ -7,8 +7,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.perennial.utils.PUtils;
 import org.perennial.utils.data.PUtilsConfig;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import static org.perennial.utils.PUtils.statistics;
 
@@ -42,13 +40,8 @@ public class Seen implements CommandExecutor {
             return true;
         }
 
-        Date date = new java.util.Date(statistics.getStatLong(subject + ".last-seen"));
-        SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
-        sdf.setTimeZone(java.util.TimeZone.getTimeZone("UTC"));
-        String formattedLastseen = sdf.format(date);
-
-        String lastSeen = statistics.getStatString(subject + ".last-seen");
-        sender.sendMessage("§6" + subject + " was last seen on§e " + formattedLastseen + " UTC");
+        String lastSeen = statistics.dateFormatLong(subject + ".last-seen");
+        sender.sendMessage("§6" + subject + " was last seen on§e " + lastSeen + " UTC");
 
         return true;
     }

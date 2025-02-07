@@ -30,33 +30,17 @@ public class Stats implements CommandExecutor {
             return true;
         }
 
+        String subject; //Game assumes that the subject is the sender if none is specified
         if (args.length < 1) {
-
-            statistics.save();
-            DecimalFormat df = new DecimalFormat("##.##");
-            df.setRoundingMode(RoundingMode.DOWN);
-            float hoursPlayed = Float.parseFloat(df.format((float) statistics.getStatLong(sender.getName() + ".time-played") / 3600));
-
-            double balance;
-            try {
-                balance = Economy.getMoney(sender.getName());
-            } catch (UserDoesNotExistException e) {
-                throw new RuntimeException(e);
-            }
-            sender.sendMessage("§6========§e " + sender.getName() + "'s Stats: §6========");
-            sender.sendMessage("§7» §2Balance:§a $" + balance);
-            sender.sendMessage("§7» §9Time Played:§3 " + hoursPlayed + "h");
-            sender.sendMessage("§7» §5Blocks Broken:§d " + statistics.getStatString(sender.getName() + ".blocks-broken"));
-            sender.sendMessage("§7» §4Blocks Placed:§c " + statistics.getStatString(sender.getName() + ".blocks-placed"));
-            return true;
+            subject = sender.getName();
+        } else {
+            subject = args[0];
         }
-
-        String subject = args[0];
 
         statistics.save();
         DecimalFormat df = new DecimalFormat("##.##");
         df.setRoundingMode(RoundingMode.DOWN);
-        float hoursPlayed = Float.parseFloat(df.format((float) statistics.getStatLong(subject + ".time-played") / 3600L));
+        float hoursPlayed = Float.parseFloat(df.format((float) statistics.getStatLong(subject + ".time-played") / 108000000));
 
         double balance;
         try {
@@ -65,7 +49,7 @@ public class Stats implements CommandExecutor {
             throw new RuntimeException(e);
         }
 
-        sender.sendMessage("§6========§e " + subject + "'s Stats: §6========");
+        sender.sendMessage("§6==========§e " + subject + "'s Stats: §6==========");
         sender.sendMessage("§7» §2Balance:§a $" + balance);
         sender.sendMessage("§7» §9Time Played:§3 " + hoursPlayed + "h");
         sender.sendMessage("§7» §5Blocks Broken:§d " + statistics.getStatString(subject + ".blocks-broken"));

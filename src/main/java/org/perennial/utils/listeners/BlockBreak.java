@@ -7,7 +7,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.perennial.utils.PUtils;
 import org.perennial.utils.data.PUtilsConfig;
 
-import static org.perennial.utils.PUtils.getStats;
 import static org.perennial.utils.PUtils.statistics;
 
 public class BlockBreak  implements Listener {
@@ -23,7 +22,7 @@ public class BlockBreak  implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
 
         String playerName = event.getPlayer().getName();
-        statistics.setProperty(playerName + ".blocks-broken", Integer.sum(getStats().getStatInteger(playerName + ".blocks-broken"), 1));
+        statistics.incrementStatInt(playerName + ".blocks-broken");
         statistics.save();
     }
 }

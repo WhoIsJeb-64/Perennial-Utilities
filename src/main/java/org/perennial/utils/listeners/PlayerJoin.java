@@ -12,7 +12,7 @@ import static org.perennial.utils.PUtils.statistics;
 public class PlayerJoin implements Listener {
     private PUtils plugin;
     private PUtilsConfig config;
-    public static long startTime = System.currentTimeMillis() / 1000L;
+    public static long startTime = System.nanoTime() / 1000000000L;
 
     public PlayerJoin(PUtils plugin) {
         this.plugin = plugin;
@@ -24,7 +24,7 @@ public class PlayerJoin implements Listener {
 
         //Join message
         String playerName = event.getPlayer().getName();
-        String message = plugin.getConfig().getConfigString("settings.join-message");
+        String message = plugin.getConfig().getConfigString("join-message");
         message = message.replace("%p%", playerName);
         event.setJoinMessage((message));
 

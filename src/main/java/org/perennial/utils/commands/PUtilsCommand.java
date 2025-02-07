@@ -27,12 +27,22 @@ public class PUtilsCommand implements CommandExecutor {
 
         if (args[0].equalsIgnoreCase("?")) {
             sender.sendMessage("§2=============== §aPUtils Commands §2===============");
-            sender.sendMessage("§a/colors§7 Lists the 16 text colors and their codes.");
-            sender.sendMessage("§a/discord§7 Links to the server's discord.");
-            sender.sendMessage("§a/map§7 Lists to the server's dynmap.");
-            sender.sendMessage("§a/playtime§7 Prints the playtime of the sender or another user.");
-            sender.sendMessage("§a/stats§7 Lists some stats of the sender or another user.");
-            sender.sendMessage("§a/seen§7 Says when a player was last seen online in GMT.");
+            if (sender.hasPermission("putils.colors") || sender.isOp()) {
+                sender.sendMessage("§a/colors§7 Lists the 16 text colors and their codes.");
+            }
+            if (sender.hasPermission("putils.discord") || sender.isOp()) {
+                sender.sendMessage("§a/discord§7 Links to the server's discord.");
+            }
+            if (sender.hasPermission("putils.map") || sender.isOp()) {
+                sender.sendMessage("§a/map§7 Lists to the server's dynmap.");
+            }
+            if (sender.hasPermission("putils.stats") || sender.isOp()) {
+                sender.sendMessage("§a/playtime§7 Prints the playtime of the sender or another user.");
+                sender.sendMessage("§a/stats§7 Lists some stats of the sender or another user.");
+            }
+            if (sender.hasPermission("putils.seen") || sender.isOp()) {
+                sender.sendMessage("§a/seen§7 Says when a player was last seen online in GMT.");
+            }
             return true;
         }
 
