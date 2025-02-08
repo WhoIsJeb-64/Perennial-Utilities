@@ -22,7 +22,8 @@ public class BlockBreak  implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
 
         String playerName = event.getPlayer().getName();
-        statistics.incrementStatInt(playerName + ".blocks-broken");
+        String key = playerName + ".blocks-broken";
+        statistics.setProperty(key, statistics.incrementStatInt(key));
         statistics.save();
     }
 }

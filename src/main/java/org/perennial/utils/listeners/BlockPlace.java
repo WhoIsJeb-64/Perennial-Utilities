@@ -22,7 +22,8 @@ public class BlockPlace implements Listener {
     public void onBlockPlace(BlockPlaceEvent event) {
 
         String playerName = event.getPlayer().getName();
-        statistics.incrementStatInt(playerName + ".blocks-placed");
+        String key = playerName + ".blocks-placed";
+        statistics.setProperty(key, statistics.incrementStatInt(key));
         statistics.save();
     }
 }

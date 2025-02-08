@@ -34,6 +34,7 @@ commands:
     usage: /<command> <player>
     permission: putils.stats
     permission-message: You do not have permission to use this command.
+    aliases: [pti]
   seen:
     description: Lists the last time specified player was online. (yyyy-MM-dd HH:mm UTC)
     usage: /<command> <player>

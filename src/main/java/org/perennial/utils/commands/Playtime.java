@@ -36,7 +36,7 @@ public class Playtime implements CommandExecutor {
 
         DecimalFormat df = new DecimalFormat("##.##");
         df.setRoundingMode(RoundingMode.DOWN);
-        float hoursPlayed = Float.parseFloat(df.format((float) statistics.getStatLong(subject + ".time-played") / 108000000));
+        float hoursPlayed = Float.parseFloat(df.format((float) statistics.getStatLong(subject + ".time-played")));
 
         sender.sendMessage("§9" + subject + "'s §9Time Played:§3 " + hoursPlayed + "h");
         return true;

@@ -6,7 +6,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static org.perennial.utils.PUtils.statistics;
+import static org.perennial.utils.listeners.PlayerJoin.sessionStart;
 
 public class PUtilsStats extends Configuration {
 
@@ -36,12 +36,10 @@ public class PUtilsStats extends Configuration {
         this.setProperty(key, value);
     }
 
-    public Object getStatEntry(String key) {
-        return this.getProperty(key);
-    }
+    //Retrieving statistics
 
     public String getStatString(String key) {
-        return String.valueOf(getStatEntry(key));
+        return String.valueOf(this.getProperty(key));
     }
 
     public Integer getStatInteger(String key) {
@@ -52,16 +50,22 @@ public class PUtilsStats extends Configuration {
         return Long.valueOf(getStatString(key));
     }
 
-    public Long incrementStatLong(String key) {
-        return Long.sum(this.getStatLong(key), 1);
-    }
+    //Incrementing statistics
 
     public Integer incrementStatInt(String key) {
         return Integer.sum(this.getStatInteger(key), 1);
     }
 
+    public long iteratePlaytime(String key) {
+        long playtime = this.getStatLong(key);
+        long sessionTime = (System.currentTimeMillis() - sessionStart);
+        return Long.sum(this.getStatLong(key), sessionTime);
+    }
+
+    //Doing other stuff to/with statistics
+
     public String dateFormatLong(String key) {
-        Date date = new java.util.Date(statistics.getStatLong(key));
+        Date date = new java.util.Date(this.getStatLong(key));
         SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
         sdf.setTimeZone(java.util.TimeZone.getTimeZone("UTC"));
         return sdf.format(date);

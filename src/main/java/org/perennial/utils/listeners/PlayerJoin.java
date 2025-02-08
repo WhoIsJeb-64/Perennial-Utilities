@@ -12,7 +12,7 @@ import static org.perennial.utils.PUtils.statistics;
 public class PlayerJoin implements Listener {
     private PUtils plugin;
     private PUtilsConfig config;
-    public static long startTime = System.nanoTime() / 1000000000L;
+    public static long sessionStart = System.currentTimeMillis();
 
     public PlayerJoin(PUtils plugin) {
         this.plugin = plugin;
@@ -31,10 +31,5 @@ public class PlayerJoin implements Listener {
         statistics.generateStatEntry(playerName + ".time-played", 0);
         statistics.generateStatEntry(playerName + ".blocks-broken", 0);
         statistics.generateStatEntry(playerName + ".blocks-placed", 0);
-        statistics.save();
-    }
-
-    public static long getStartTime() {
-        return startTime;
     }
 }
