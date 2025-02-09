@@ -22,13 +22,20 @@ public class PlayerQuit implements Listener {
     @EventHandler(priority = Event.Priority.Highest)
     public void onPlayerQuit(PlayerQuitEvent event) {
 
+        String playerName = event.getPlayer().getName();
+
         //Quit message
         String message = plugin.getConfig().getConfigString("quit-message");
-        message = message.replace("%p%", event.getPlayer().getName());
+        message = message.replace("%p%", playerName);
         event.setQuitMessage((message));
 
-        String playerName = event.getPlayer().getName();
-        statistics.iteratePlaytime(playerName + ".time-played");
+        //Update player's playtime
+        String key = playerName + ".time-played";
+        long timePlayed = statistics.getStatLong(key);
+        long sessionLength = (System.currentTimeMillis() / 1000000) - PlayerJoin.sessionStart;
+        statistics.setProperty(key, timePlayed + sessionLength);
+        statistics.save();
+
     }
 
     public static long getLastSeen() {

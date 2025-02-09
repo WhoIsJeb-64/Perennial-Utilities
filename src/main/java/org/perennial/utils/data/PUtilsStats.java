@@ -2,11 +2,10 @@ package org.perennial.utils.data;
 
 import org.bukkit.util.config.Configuration;
 import org.perennial.utils.PUtils;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import static org.perennial.utils.listeners.PlayerJoin.sessionStart;
 
 public class PUtilsStats extends Configuration {
 
@@ -54,12 +53,6 @@ public class PUtilsStats extends Configuration {
 
     public Integer incrementStatInt(String key) {
         return Integer.sum(this.getStatInteger(key), 1);
-    }
-
-    public long iteratePlaytime(String key) {
-        long playtime = this.getStatLong(key);
-        long sessionTime = (System.currentTimeMillis() - sessionStart);
-        return Long.sum(this.getStatLong(key), sessionTime);
     }
 
     //Doing other stuff to/with statistics

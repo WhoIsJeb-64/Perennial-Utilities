@@ -10,9 +10,9 @@ import org.perennial.utils.data.PUtilsConfig;
 import static org.perennial.utils.PUtils.statistics;
 
 public class PlayerJoin implements Listener {
+    public static long sessionStart;
     private PUtils plugin;
     private PUtilsConfig config;
-    public static long sessionStart = System.currentTimeMillis();
 
     public PlayerJoin(PUtils plugin) {
         this.plugin = plugin;
@@ -21,6 +21,8 @@ public class PlayerJoin implements Listener {
 
     @EventHandler(priority = Event.Priority.Highest)
     public void onPlayerJoin(PlayerJoinEvent event) {
+
+        long sessionStart = System.currentTimeMillis() / 1000000;
 
         //Join message
         String playerName = event.getPlayer().getName();
