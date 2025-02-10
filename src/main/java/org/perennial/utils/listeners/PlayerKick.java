@@ -7,6 +7,8 @@ import org.bukkit.event.player.PlayerKickEvent;
 import org.perennial.utils.PUtils;
 import org.perennial.utils.data.PUtilsConfig;
 
+import static org.perennial.utils.PUtils.statistics;
+
 public class PlayerKick implements Listener {
     private PUtils plugin;
     private PUtilsConfig config;
@@ -20,12 +22,21 @@ public class PlayerKick implements Listener {
     @EventHandler(priority = Event.Priority.High)
     public void onPlayerKick(PlayerKickEvent event) {
 
+        String playerName = event.getPlayer().getName();
+
         //Kick message
         String message = plugin.getConfig().getConfigString("kick-message");
         message = message.replace("%p%", event.getPlayer().getName());
         event.setLeaveMessage((message));
 
-        //Add length of play session to playtime and set last-seen
+        //Update player's playtime
+        String key = playerName + ".time-played";
+        long timePlayed = statistics.getStatLong(key);
+        long sessionStart = statistics.getStatLong(playerName + ".session-start");
+        long sessionEnd = System.currentTimeMillis() / 1000;
+        long timeElapsed = sessionEnd - sessionStart;
+        statistics.setProperty(key, timePlayed + timeElapsed);
+        statistics.save();
 
     }
 }

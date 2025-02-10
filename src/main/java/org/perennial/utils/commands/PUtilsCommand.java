@@ -19,7 +19,7 @@ public class PUtilsCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length < 1) {
-            sender.sendMessage("§2====== §aPerennial-Utilities v1.2-SNAPSHOT §2======");
+            sender.sendMessage("§2========== §aPerennial-Utilities v1.2.0 §2==========");
             sender.sendMessage("§2» §aAuthor:§7 WhoIsJeb");
             sender.sendMessage("§2» §7Use §a/putils ?§7 for a list of its commands.");
             return true;

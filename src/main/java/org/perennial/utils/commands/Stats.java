@@ -46,7 +46,7 @@ public class Stats implements CommandExecutor {
 
         //Convert playtime to hours and add commas to blocks broken/placed
         long hoursPlayed = statistics.secondsToHours(subject + ".time-played");
-        DecimalFormat formatter = new DecimalFormat("#,###.00");
+        DecimalFormat formatter = new DecimalFormat("#,###");
         String blocksBroken = formatter.format(statistics.getStatInteger(subject + ".blocks-broken"));
         String blocksPlaced = formatter.format(statistics.getStatInteger(subject + ".blocks-placed"));
 

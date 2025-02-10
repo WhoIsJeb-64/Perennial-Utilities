@@ -35,6 +35,10 @@ public class PlayerQuit implements Listener {
         long sessionEnd = System.currentTimeMillis() / 1000;
         long timeElapsed = sessionEnd - sessionStart;
         statistics.setProperty(key, timePlayed + timeElapsed);
+
+        //Set last time they were seen
+        long lastSeen = System.currentTimeMillis() / 1000;
+        statistics.setProperty(playerName + ".last-seen", lastSeen);
         statistics.save();
     }
 }

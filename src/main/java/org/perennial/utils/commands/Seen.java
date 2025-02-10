@@ -40,8 +40,8 @@ public class Seen implements CommandExecutor {
             return true;
         }
 
-        String lastSeen = statistics.dateFormatLong(subject + ".last-seen");
-        sender.sendMessage("§6" + subject + " was last seen on§e " + lastSeen + " UTC");
+        String lastSeen = statistics.seeLastSeen(subject + ".last-seen");
+        sender.sendMessage("§6" + subject + "§e was last seen " + lastSeen + " ago.");
 
         return true;
     }

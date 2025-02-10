@@ -5,7 +5,6 @@ import org.perennial.utils.PUtils;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class PUtilsStats extends Configuration {
 
@@ -61,11 +60,11 @@ public class PUtilsStats extends Configuration {
 
     //Doing other stuff to/with statistics
 
-    public String dateFormatLong(String key) {
-        Date date = new java.util.Date(this.getStatLong(key));
-        SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
-        sdf.setTimeZone(java.util.TimeZone.getTimeZone("UTC"));
-        return sdf.format(date);
+    public String seeLastSeen(String key) {
+        long seenAgo = (System.currentTimeMillis() / 1000) - getStatLong(key);
+        String DATE_FORMAT = "D 'days,' H 'hours, &' m 'minutes'";
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+        return sdf.format(seenAgo);
     }
 
     public long secondsToHours(String key) {

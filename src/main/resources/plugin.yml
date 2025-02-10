@@ -1,7 +1,7 @@
 name: PUtils
 description: A plugin with a few misc features.
 main: org.perennial.utils.PUtils
-version: 1.2-SNAPSHOT
+version: 1.2
 authors:
   - WhoIsJeb
 softdepend:
