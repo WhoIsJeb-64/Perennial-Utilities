@@ -1,5 +1,5 @@
 # Perennial Utilities
-## v1.1.1
+## v1.2.0
 ### About
 Perennial Utilities (or PUtils) is a b1.7.3 plugin that add some QoL features to slightly improve the experience of playing on servers.\
 More features are planned for future versions.
