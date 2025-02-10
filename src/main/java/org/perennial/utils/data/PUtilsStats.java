@@ -55,6 +55,10 @@ public class PUtilsStats extends Configuration {
         return Integer.sum(this.getStatInteger(key), 1);
     }
 
+    public void incrementPlaytime() {
+
+    }
+
     //Doing other stuff to/with statistics
 
     public String dateFormatLong(String key) {
@@ -62,5 +66,9 @@ public class PUtilsStats extends Configuration {
         SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm");
         sdf.setTimeZone(java.util.TimeZone.getTimeZone("UTC"));
         return sdf.format(date);
+    }
+
+    public long secondsToHours(String key) {
+        return getStatLong(key) / 3600;
     }
 }

@@ -10,9 +10,9 @@ import org.perennial.utils.data.PUtilsConfig;
 import static org.perennial.utils.PUtils.statistics;
 
 public class PlayerJoin implements Listener {
-    public static long sessionStart;
     private PUtils plugin;
     private PUtilsConfig config;
+    public static long sessionStart;
 
     public PlayerJoin(PUtils plugin) {
         this.plugin = plugin;
@@ -21,8 +21,6 @@ public class PlayerJoin implements Listener {
 
     @EventHandler(priority = Event.Priority.Highest)
     public void onPlayerJoin(PlayerJoinEvent event) {
-
-        long sessionStart = System.currentTimeMillis() / 1000000;
 
         //Join message
         String playerName = event.getPlayer().getName();
@@ -33,5 +31,8 @@ public class PlayerJoin implements Listener {
         statistics.generateStatEntry(playerName + ".time-played", 0);
         statistics.generateStatEntry(playerName + ".blocks-broken", 0);
         statistics.generateStatEntry(playerName + ".blocks-placed", 0);
+
+        sessionStart = System.currentTimeMillis() / 1000;
+        statistics.setProperty(playerName + ".session-start", sessionStart);
     }
 }

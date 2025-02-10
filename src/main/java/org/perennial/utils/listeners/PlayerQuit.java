@@ -12,7 +12,6 @@ import static org.perennial.utils.PUtils.statistics;
 public class PlayerQuit implements Listener {
     private PUtils plugin;
     private PUtilsConfig config;
-    public static long lastSeen = System.currentTimeMillis();
 
     public PlayerQuit(PUtils plugin) {
         this.plugin = plugin;
@@ -32,13 +31,10 @@ public class PlayerQuit implements Listener {
         //Update player's playtime
         String key = playerName + ".time-played";
         long timePlayed = statistics.getStatLong(key);
-        long sessionLength = (System.currentTimeMillis() / 1000000) - PlayerJoin.sessionStart;
-        statistics.setProperty(key, timePlayed + sessionLength);
+        long sessionStart = statistics.getStatLong(playerName + ".session-start");
+        long sessionEnd = System.currentTimeMillis() / 1000;
+        long timeElapsed = sessionEnd - sessionStart;
+        statistics.setProperty(key, timePlayed + timeElapsed);
         statistics.save();
-
-    }
-
-    public static long getLastSeen() {
-        return lastSeen;
     }
 }

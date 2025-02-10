@@ -5,8 +5,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.perennial.utils.PUtils;
 import org.perennial.utils.data.PUtilsConfig;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 
 import static org.perennial.utils.PUtils.statistics;
 
@@ -34,9 +32,7 @@ public class Playtime implements CommandExecutor {
             subject = args[0];
         }
 
-        DecimalFormat df = new DecimalFormat("##.##");
-        df.setRoundingMode(RoundingMode.DOWN);
-        float hoursPlayed = Float.parseFloat(df.format((float) statistics.getStatLong(subject + ".time-played")));
+        long hoursPlayed = statistics.secondsToHours(subject + ".time-played");
 
         sender.sendMessage("§9" + subject + "'s §9Time Played:§3 " + hoursPlayed + "h");
         return true;

@@ -8,6 +8,8 @@ import org.perennial.utils.PUtils;
 import org.perennial.utils.data.PUtilsConfig;
 import com.earth2me.essentials.api.Economy;
 
+import java.text.DecimalFormat;
+
 import static org.perennial.utils.PUtils.statistics;
 
 public class Stats implements CommandExecutor {
@@ -35,7 +37,6 @@ public class Stats implements CommandExecutor {
             subject = args[0];
         }
 
-
         double balance;
         try {
             balance = Economy.getMoney(subject);
@@ -43,11 +44,17 @@ public class Stats implements CommandExecutor {
             throw new RuntimeException(e);
         }
 
+        //Convert playtime to hours and add commas to blocks broken/placed
+        long hoursPlayed = statistics.secondsToHours(subject + ".time-played");
+        DecimalFormat formatter = new DecimalFormat("#,###.00");
+        String blocksBroken = formatter.format(statistics.getStatInteger(subject + ".blocks-broken"));
+        String blocksPlaced = formatter.format(statistics.getStatInteger(subject + ".blocks-placed"));
+
         sender.sendMessage("§6==========§e " + subject + "'s Stats: §6==========");
         sender.sendMessage("§7» §2Balance:§a $" + balance);
-        sender.sendMessage("§7» §9Time Played:§3 " + statistics.getStatLong(subject + ".time-played") + "s");
-        sender.sendMessage("§7» §5Blocks Broken:§d " + statistics.getStatString(subject + ".blocks-broken"));
-        sender.sendMessage("§7» §4Blocks Placed:§c " + statistics.getStatString(subject + ".blocks-placed"));
+        sender.sendMessage("§7» §9Time Played:§3 " + hoursPlayed + "h");
+        sender.sendMessage("§7» §5Blocks Broken:§d " + blocksBroken);
+        sender.sendMessage("§7» §4Blocks Placed:§c " + blocksPlaced);
         return true;
     }
 }
