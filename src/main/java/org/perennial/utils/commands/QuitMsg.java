@@ -53,8 +53,8 @@ public class QuitMsg implements CommandExecutor {
                 return true;
             } else {
                 args[1] = args[1].replaceAll("&", "§");
-                String joinMessage = args[1];
-                userdata.setProperty(key, joinMessage);
+                String quitMessage = args[1];
+                userdata.setProperty(key, quitMessage);
                 userdata.save();
             }
             sender.sendMessage("§aCustom quit message set successfully!");

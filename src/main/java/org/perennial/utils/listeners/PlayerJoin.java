@@ -22,20 +22,20 @@ public class PlayerJoin implements Listener {
     @EventHandler(priority = Event.Priority.Highest)
     public void onPlayerJoin(PlayerJoinEvent event) {
 
-        userdata.save();
-
-        //Join message
         String playerName = event.getPlayer().getName();
-        String message = userdata.getDataString(playerName + ".join-message");
-        message = message.replace("%p%", playerName);
-        event.setJoinMessage((message));
+        userdata.save();
 
         userdata.generateDataEntry(playerName + ".stats.time-played", 0);
         userdata.generateDataEntry(playerName + ".stats.blocks-broken", 0);
         userdata.generateDataEntry(playerName + ".stats.blocks-placed", 0);
         userdata.generateDataEntry(playerName + ".stats.messages-sent", 0);
         userdata.generateDataEntry(playerName + ".join-message", config.defaultJoinMessage());
-        userdata.generateDataEntry(playerName + ".join-message", config.defaultQuitMessage());
+        userdata.generateDataEntry(playerName + ".quit-message", config.defaultQuitMessage());
+
+        //Join message
+        String message = userdata.getDataString(playerName + ".join-message");
+        message = message.replace("%p%", playerName);
+        event.setJoinMessage((message));
 
         sessionStart = System.currentTimeMillis() / 1000;
         userdata.setProperty(playerName + ".stats.session-start", sessionStart);
