@@ -141,5 +141,13 @@ public class PUtilsConfig extends Configuration {
         return Boolean.valueOf(getConfigString(key));
     }
 
+    public String defaultJoinMessage() {
+        return plugin.getConfig().getConfigString("join-message");
+    }
+
+    public String defaultQuitMessage() {
+        return plugin.getConfig().getConfigString("quit-message");
+    }
+
     //Getters End
 }

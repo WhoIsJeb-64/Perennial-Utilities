@@ -7,7 +7,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.perennial.utils.PUtils;
 import org.perennial.utils.data.PUtilsConfig;
 
-import static org.perennial.utils.PUtils.statistics;
+import static org.perennial.utils.PUtils.userdata;
 
 public class PlayerQuit implements Listener {
     private PUtils plugin;
@@ -21,24 +21,24 @@ public class PlayerQuit implements Listener {
     @EventHandler(priority = Event.Priority.Highest)
     public void onPlayerQuit(PlayerQuitEvent event) {
 
-        String playerName = event.getPlayer().getName();
-
         //Quit message
-        String message = plugin.getConfig().getConfigString("quit-message");
+        String playerName = event.getPlayer().getName();
+        String defaultQuitMessage = plugin.getConfig().getConfigString("quit-message");
+        String message = userdata.getDataString(playerName + ".quit-message");
         message = message.replace("%p%", playerName);
         event.setQuitMessage((message));
 
         //Update player's playtime
-        String key = playerName + ".time-played";
-        long timePlayed = statistics.getStatLong(key);
-        long sessionStart = statistics.getStatLong(playerName + ".session-start");
+        String key = playerName + ".stats.time-played";
+        long timePlayed = userdata.getDataLong(key);
+        long sessionStart = userdata.getDataLong(playerName + ".stats.session-start");
         long sessionEnd = System.currentTimeMillis() / 1000;
         long timeElapsed = sessionEnd - sessionStart;
-        statistics.setProperty(key, timePlayed + timeElapsed);
+        userdata.setProperty(key, timePlayed + timeElapsed);
 
         //Set last time they were seen
         long lastSeen = System.currentTimeMillis() / 1000;
-        statistics.setProperty(playerName + ".last-seen", lastSeen);
-        statistics.save();
+        userdata.setProperty(playerName + ".stats.last-seen", lastSeen);
+        userdata.save();
     }
 }

@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.perennial.utils.PUtils;
 import org.perennial.utils.data.PUtilsConfig;
 
-import static org.perennial.utils.PUtils.statistics;
+import static org.perennial.utils.PUtils.userdata;
 
 public class Playtime implements CommandExecutor {
 
@@ -32,7 +32,7 @@ public class Playtime implements CommandExecutor {
             subject = args[0];
         }
 
-        long hoursPlayed = statistics.secondsToHours(subject + ".time-played");
+        long hoursPlayed = userdata.secondsToHours(subject + ".stats.time-played");
 
         sender.sendMessage("§9" + subject + "'s §9Time Played:§3 " + hoursPlayed + "h");
         return true;

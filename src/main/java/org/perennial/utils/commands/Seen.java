@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.perennial.utils.PUtils;
 import org.perennial.utils.data.PUtilsConfig;
 
-import static org.perennial.utils.PUtils.statistics;
+import static org.perennial.utils.PUtils.userdata;
 
 public class Seen implements CommandExecutor {
 
@@ -40,7 +40,7 @@ public class Seen implements CommandExecutor {
             return true;
         }
 
-        String lastSeen = statistics.seeLastSeen(subject + ".last-seen");
+        String lastSeen = userdata.seeLastSeen(subject + ".last-seen");
         sender.sendMessage("§6" + subject + "§e was last seen " + lastSeen + " ago.");
 
         return true;

@@ -6,11 +6,11 @@ import org.perennial.utils.PUtils;
 import java.io.File;
 import java.text.SimpleDateFormat;
 
-public class PUtilsStats extends Configuration {
+public class PUtilsData extends Configuration {
 
     private PUtils plugin;
 
-    public PUtilsStats(PUtils plugin, File statsFile) {
+    public PUtilsData(PUtils plugin, File statsFile) {
         super(statsFile);
         this.plugin = plugin;
         this.reload();
@@ -25,7 +25,7 @@ public class PUtilsStats extends Configuration {
     public void write() {
     }
 
-    public void generateStatEntry(String key, Object defaultValue) {
+    public void generateDataEntry(String key, Object defaultValue) {
         if (this.getProperty(key) == null) {
             this.setProperty(key, defaultValue);
         }
@@ -36,22 +36,22 @@ public class PUtilsStats extends Configuration {
 
     //Retrieving statistics
 
-    public String getStatString(String key) {
+    public String getDataString(String key) {
         return String.valueOf(this.getProperty(key));
     }
 
-    public Integer getStatInteger(String key) {
-        return Integer.valueOf(getStatString(key));
+    public Integer getDataInt(String key) {
+        return Integer.valueOf(getDataString(key));
     }
 
-    public Long getStatLong(String key) {
-        return Long.valueOf(getStatString(key));
+    public Long getDataLong(String key) {
+        return Long.valueOf(getDataString(key));
     }
 
     //Incrementing statistics
 
-    public Integer incrementStatInt(String key) {
-        return Integer.sum(this.getStatInteger(key), 1);
+    public Integer incrementDataInt(String key) {
+        return Integer.sum(this.getDataInt(key), 1);
     }
 
     public void incrementPlaytime() {
@@ -61,13 +61,13 @@ public class PUtilsStats extends Configuration {
     //Doing other stuff to/with statistics
 
     public String seeLastSeen(String key) {
-        long seenAgo = (System.currentTimeMillis() / 1000) - getStatLong(key);
+        long seenAgo = (System.currentTimeMillis() / 1000) - getDataLong(key);
         String DATE_FORMAT = "D 'days,' H 'hours, &' m 'minutes'";
         SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
         return sdf.format(seenAgo);
     }
 
     public long secondsToHours(String key) {
-        return getStatLong(key) / 3600;
+        return getDataLong(key) / 3600;
     }
 }

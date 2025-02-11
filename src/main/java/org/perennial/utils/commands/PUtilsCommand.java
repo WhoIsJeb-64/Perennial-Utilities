@@ -89,7 +89,7 @@ public class PUtilsCommand implements CommandExecutor {
             }
 
             PUtils.configuration.reload();
-            PUtils.statistics.reload();
+            PUtils.userdata.reload();
             sender.sendMessage("§aPerennial-Utilities reloaded successfully!");
 
             return true;

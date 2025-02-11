@@ -17,7 +17,7 @@ public class PlayerChat implements Listener {
         this.config = plugin.getConfig();
     }
 
-    @EventHandler(priority = Event.Priority.Lowest)
+    @EventHandler(priority = Event.Priority.Highest)
     public void onPlayerChat(PlayerChatEvent event) {
 
     }

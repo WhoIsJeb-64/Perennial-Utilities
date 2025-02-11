@@ -7,7 +7,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.perennial.utils.PUtils;
 import org.perennial.utils.data.PUtilsConfig;
 
-import static org.perennial.utils.PUtils.statistics;
+import static org.perennial.utils.PUtils.userdata;
 
 public class PlayerJoin implements Listener {
     private PUtils plugin;
@@ -22,17 +22,22 @@ public class PlayerJoin implements Listener {
     @EventHandler(priority = Event.Priority.Highest)
     public void onPlayerJoin(PlayerJoinEvent event) {
 
+        userdata.save();
+
         //Join message
         String playerName = event.getPlayer().getName();
-        String message = plugin.getConfig().getConfigString("join-message");
+        String message = userdata.getDataString(playerName + ".join-message");
         message = message.replace("%p%", playerName);
         event.setJoinMessage((message));
 
-        statistics.generateStatEntry(playerName + ".time-played", 0);
-        statistics.generateStatEntry(playerName + ".blocks-broken", 0);
-        statistics.generateStatEntry(playerName + ".blocks-placed", 0);
+        userdata.generateDataEntry(playerName + ".stats.time-played", 0);
+        userdata.generateDataEntry(playerName + ".stats.blocks-broken", 0);
+        userdata.generateDataEntry(playerName + ".stats.blocks-placed", 0);
+        userdata.generateDataEntry(playerName + ".stats.messages-sent", 0);
+        userdata.generateDataEntry(playerName + ".join-message", config.defaultJoinMessage());
+        userdata.generateDataEntry(playerName + ".join-message", config.defaultQuitMessage());
 
         sessionStart = System.currentTimeMillis() / 1000;
-        statistics.setProperty(playerName + ".session-start", sessionStart);
+        userdata.setProperty(playerName + ".stats.session-start", sessionStart);
     }
 }

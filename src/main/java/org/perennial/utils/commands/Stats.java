@@ -10,7 +10,7 @@ import com.earth2me.essentials.api.Economy;
 
 import java.text.DecimalFormat;
 
-import static org.perennial.utils.PUtils.statistics;
+import static org.perennial.utils.PUtils.userdata;
 
 public class Stats implements CommandExecutor {
 
@@ -44,17 +44,17 @@ public class Stats implements CommandExecutor {
             throw new RuntimeException(e);
         }
 
-        //Convert playtime to hours and add commas to blocks broken/placed
-        long hoursPlayed = statistics.secondsToHours(subject + ".time-played");
+        //Convert playtime to hours and add commas to blocks broken/placed and messages sent
+        long hoursPlayed = userdata.secondsToHours(subject + ".stats.time-played");
         DecimalFormat formatter = new DecimalFormat("#,###");
-        String blocksBroken = formatter.format(statistics.getStatInteger(subject + ".blocks-broken"));
-        String blocksPlaced = formatter.format(statistics.getStatInteger(subject + ".blocks-placed"));
+        String blocksBroken = formatter.format(userdata.getDataInt(subject + ".stats.blocks-broken"));
+        String blocksPlaced = formatter.format(userdata.getDataInt(subject + ".stats.blocks-placed"));
 
         sender.sendMessage("§6==========§e " + subject + "'s Stats: §6==========");
         sender.sendMessage("§7» §2Balance:§a $" + balance);
         sender.sendMessage("§7» §9Time Played:§3 " + hoursPlayed + "h");
-        sender.sendMessage("§7» §5Blocks Broken:§d " + blocksBroken);
-        sender.sendMessage("§7» §4Blocks Placed:§c " + blocksPlaced);
+        sender.sendMessage("§7» §4Blocks Broken/Placed:§c " + blocksBroken + "§4 / §c" + blocksPlaced);
+        sender.sendMessage("§7» §5Messages Sent:§d " + blocksPlaced);
         return true;
     }
 }

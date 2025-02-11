@@ -7,7 +7,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.perennial.utils.PUtils;
 import org.perennial.utils.data.PUtilsConfig;
 
-import static org.perennial.utils.PUtils.statistics;
+import static org.perennial.utils.PUtils.userdata;
 
 public class BlockPlace implements Listener {
     private PUtils plugin;
@@ -22,8 +22,8 @@ public class BlockPlace implements Listener {
     public void onBlockPlace(BlockPlaceEvent event) {
 
         String playerName = event.getPlayer().getName();
-        String key = playerName + ".blocks-placed";
-        statistics.setProperty(key, statistics.incrementStatInt(key));
-        statistics.save();
+        String key = playerName + ".stats.blocks-placed";
+        userdata.setProperty(key, userdata.incrementDataInt(key));
+        userdata.save();
     }
 }

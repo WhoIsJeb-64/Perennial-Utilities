@@ -5,7 +5,7 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.perennial.utils.commands.*;
 import org.perennial.utils.data.PUtilsConfig;
-import org.perennial.utils.data.PUtilsStats;
+import org.perennial.utils.data.PUtilsData;
 import org.perennial.utils.listeners.*;
 
 import java.io.File;
@@ -19,7 +19,7 @@ public class PUtils extends JavaPlugin {
     private PluginDescriptionFile pdf;
 
     public static PUtilsConfig configuration;
-    public static PUtilsStats statistics;
+    public static PUtilsData userdata;
 
 
     @Override
@@ -32,7 +32,7 @@ public class PUtils extends JavaPlugin {
 
         //Create config.yml and stats.yml
         configuration = new PUtilsConfig(this, new File(getDataFolder(), "config.yml"));
-        statistics = new PUtilsStats(this, new File(getDataFolder(), "stats.yml"));
+        userdata = new PUtilsData(this, new File(getDataFolder(), "userdata.yml"));
 
         //Register commands
         getCommand("discord").setExecutor(new Discord(this));
@@ -42,6 +42,7 @@ public class PUtils extends JavaPlugin {
         getCommand("playtime").setExecutor(new Playtime(this));
         //getCommand("seen").setExecutor(new Seen(this));
         getCommand("putils").setExecutor(new PUtilsCommand(this));
+        getCommand("joinmsg").setExecutor(new JoinMsg(this));
 
         //Register listeners
         final PlayerJoin joinlistener = new PlayerJoin(this);
@@ -63,7 +64,7 @@ public class PUtils extends JavaPlugin {
         log.info("[" + pluginName + "] Is Unloading, Version: " + pdf.getVersion());
 
         configuration.save();
-        statistics.save();
+        userdata.save();
 
         log.info("[" + pluginName + "] Is Unloaded, Version: " + pdf.getVersion());
     }
@@ -76,7 +77,7 @@ public class PUtils extends JavaPlugin {
         return configuration;
     }
 
-    public static PUtilsStats getStats() {
-        return statistics;
+    public static PUtilsData getData() {
+        return userdata;
     }
 }

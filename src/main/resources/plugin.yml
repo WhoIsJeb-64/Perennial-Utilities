@@ -44,6 +44,18 @@ commands:
     description: Lists the version/author, or a list of the commands.
     usage: /<command>
     aliases: [pu]
+  joinmsg:
+    description: Allows one to set their own custom join message.
+    usage: /<command>
+    permission: putils.custom-joinmsg
+    permission-message: You do not have permission to use this command.
+    aliases: [jmsg]
+  quitmsg:
+    description: Allows one to set their own custom quit message.
+    usage: /<command>
+    permission: putils.custom-quitmsg
+    permission-message: You do not have permission to use this command.
+    aliases: [qmsg]
 
 permissions:
   putils.*:
@@ -68,3 +80,7 @@ permissions:
     description: Gives access to /seen.
   putils.debug:
     description: Gives access to more subcommands of /putils.
+  putils.custom-joinmsg:
+    description: Gives access to /joinmsg <set|clear>
+  putils.custom-quitmsg:
+    description: Gives access to /quitmsg <set|clear|view|?>
