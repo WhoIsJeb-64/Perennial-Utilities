@@ -30,13 +30,7 @@ public class PlayerKick implements Listener {
         event.setLeaveMessage((message));
 
         //Update player's playtime
-        String key = playerName + ".stats.time-played";
-        long timePlayed = userdata.getDataLong(key);
-        long sessionStart = userdata.getDataLong(playerName + ".stats.session-start");
-        long sessionEnd = System.currentTimeMillis() / 1000;
-        long timeElapsed = sessionEnd - sessionStart;
-        userdata.setProperty(key, timePlayed + timeElapsed);
-        userdata.save();
+        userdata.updatePlaytime(playerName);
 
     }
 }

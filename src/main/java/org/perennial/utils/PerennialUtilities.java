@@ -50,15 +50,17 @@ public class PerennialUtilities extends JavaPlugin {
         final PlayerJoin joinlistener = new PlayerJoin(this);
         final PlayerQuit quitlistener = new PlayerQuit(this);
         final PlayerKick kicklistener = new PlayerKick(this);
+        final PlayerMove movelistener = new PlayerMove(this);
+        final PlayerChat chatlistener = new PlayerChat(this);
         final BlockBreak breaklistener = new BlockBreak(this);
         final BlockPlace placelistener = new BlockPlace(this);
-        final PlayerMove movelistener = new PlayerMove(this);
         getServer().getPluginManager().registerEvents(joinlistener, this);
         getServer().getPluginManager().registerEvents(quitlistener, this);
         getServer().getPluginManager().registerEvents(kicklistener, this);
+        getServer().getPluginManager().registerEvents(movelistener, this);
+        getServer().getPluginManager().registerEvents(chatlistener, this);
         getServer().getPluginManager().registerEvents(breaklistener, this);
         getServer().getPluginManager().registerEvents(placelistener, this);
-        getServer().getPluginManager().registerEvents(movelistener, this);
 
         log.info("[" + pluginName + "] Is Loaded, Version: " + pdf.getVersion());
     }

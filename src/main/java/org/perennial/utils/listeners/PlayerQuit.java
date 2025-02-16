@@ -29,12 +29,7 @@ public class PlayerQuit implements Listener {
         event.setQuitMessage((message));
 
         //Update player's playtime
-        String key = playerName + ".stats.time-played";
-        long timePlayed = userdata.getDataLong(key);
-        long sessionStart = userdata.getDataLong(playerName + ".stats.session-start");
-        long sessionEnd = System.currentTimeMillis() / 1000;
-        long timeElapsed = sessionEnd - sessionStart;
-        userdata.setProperty(key, timePlayed + timeElapsed);
+        userdata.updatePlaytime(playerName);
 
         //Set last time they were seen
         long lastSeen = System.currentTimeMillis() / 1000;

@@ -49,12 +49,13 @@ public class Stats implements CommandExecutor {
         DecimalFormat formatter = new DecimalFormat("#,###");
         String blocksBroken = formatter.format(userdata.getDataInt(subject + ".stats.blocks-broken"));
         String blocksPlaced = formatter.format(userdata.getDataInt(subject + ".stats.blocks-placed"));
+        String messagesSent = formatter.format(userdata.getDataInt(subject + ".stats.messages-sent"));
 
-        sender.sendMessage("§6==============§e " + subject + "'s Stats: §6==============");
+        sender.sendMessage("§6================§e " + subject + "'s Stats: §6================");
         sender.sendMessage("§7» §2Balance:§a $" + balance);
         sender.sendMessage("§7» §9Time Played:§3 " + hoursPlayed + "h");
         sender.sendMessage("§7» §4Blocks Broken/Placed:§c " + blocksBroken + "§4 / §c" + blocksPlaced);
-        sender.sendMessage("§7» §5Messages Sent:§d " + blocksPlaced);
+        sender.sendMessage("§7» §5Messages Sent:§d " + messagesSent);
         return true;
     }
 }

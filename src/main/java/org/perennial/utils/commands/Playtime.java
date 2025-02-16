@@ -32,6 +32,7 @@ public class Playtime implements CommandExecutor {
             subject = args[0];
         }
 
+
         long hoursPlayed = userdata.secondsToHours(subject + ".stats.time-played");
 
         sender.sendMessage("§9" + subject + "'s §9Time Played:§3 " + hoursPlayed + "h");

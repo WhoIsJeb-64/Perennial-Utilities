@@ -7,6 +7,8 @@ import org.bukkit.event.player.PlayerChatEvent;
 import org.perennial.utils.PerennialUtilities;
 import org.perennial.utils.data.PUtilsConfig;
 
+import static org.perennial.utils.PerennialUtilities.userdata;
+
 public class PlayerChat implements Listener {
 
     private PerennialUtilities plugin;
@@ -20,5 +22,9 @@ public class PlayerChat implements Listener {
     @EventHandler(priority = Event.Priority.Highest)
     public void onPlayerChat(PlayerChatEvent event) {
 
+        String playerName = event.getPlayer().getName();
+        String key = playerName + ".stats.messages-sent";
+        userdata.setProperty(key, userdata.incrementDataInt(key));
+        userdata.save();
     }
 }
