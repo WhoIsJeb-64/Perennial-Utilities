@@ -4,21 +4,21 @@ import com.earth2me.essentials.api.UserDoesNotExistException;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.perennial.utils.PUtils;
+import org.perennial.utils.PerennialUtilities;
 import org.perennial.utils.data.PUtilsConfig;
 import com.earth2me.essentials.api.Economy;
 
 import java.text.DecimalFormat;
 
-import static org.perennial.utils.PUtils.userdata;
+import static org.perennial.utils.PerennialUtilities.userdata;
 
 public class Stats implements CommandExecutor {
 
-    private final PUtils plugin;
+    private final PerennialUtilities plugin;
 
     private final PUtilsConfig config;
 
-    public Stats(PUtils plugin) {
+    public Stats(PerennialUtilities plugin) {
         this.plugin = plugin;
         this.config = plugin.getConfig();
     }
@@ -50,7 +50,7 @@ public class Stats implements CommandExecutor {
         String blocksBroken = formatter.format(userdata.getDataInt(subject + ".stats.blocks-broken"));
         String blocksPlaced = formatter.format(userdata.getDataInt(subject + ".stats.blocks-placed"));
 
-        sender.sendMessage("§6==========§e " + subject + "'s Stats: §6==========");
+        sender.sendMessage("§6==============§e " + subject + "'s Stats: §6==============");
         sender.sendMessage("§7» §2Balance:§a $" + balance);
         sender.sendMessage("§7» §9Time Played:§3 " + hoursPlayed + "h");
         sender.sendMessage("§7» §4Blocks Broken/Placed:§c " + blocksBroken + "§4 / §c" + blocksPlaced);

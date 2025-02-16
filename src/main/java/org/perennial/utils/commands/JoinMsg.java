@@ -3,18 +3,18 @@ package org.perennial.utils.commands;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.perennial.utils.PUtils;
+import org.perennial.utils.PerennialUtilities;
 import org.perennial.utils.data.PUtilsConfig;
 
-import static org.perennial.utils.PUtils.userdata;
+import static org.perennial.utils.PerennialUtilities.userdata;
 
 public class JoinMsg implements CommandExecutor {
 
-    private final PUtils plugin;
+    private final PerennialUtilities plugin;
 
     private final PUtilsConfig config;
 
-    public JoinMsg(PUtils plugin) {
+    public JoinMsg(PerennialUtilities plugin) {
         this.plugin = plugin;
         this.config = plugin.getConfig();
     }
@@ -62,7 +62,7 @@ public class JoinMsg implements CommandExecutor {
         }
 
         if (args[0].equalsIgnoreCase("view")) {
-            PUtils.userdata.reload();
+            PerennialUtilities.userdata.reload();
             String viewMsg = userdata.getDataString(key).replace("%p%", subject);
             sender.sendMessage(userdata.getDataString(key));
             return true;

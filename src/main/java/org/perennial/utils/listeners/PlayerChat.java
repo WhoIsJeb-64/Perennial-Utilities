@@ -4,15 +4,15 @@ import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChatEvent;
-import org.perennial.utils.PUtils;
+import org.perennial.utils.PerennialUtilities;
 import org.perennial.utils.data.PUtilsConfig;
 
 public class PlayerChat implements Listener {
 
-    private PUtils plugin;
+    private PerennialUtilities plugin;
     private PUtilsConfig config;
 
-    public PlayerChat(PUtils plugin) {
+    public PlayerChat(PerennialUtilities plugin) {
         this.plugin = plugin;
         this.config = plugin.getConfig();
     }

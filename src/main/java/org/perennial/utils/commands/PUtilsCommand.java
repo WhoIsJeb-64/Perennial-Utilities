@@ -3,16 +3,16 @@ package org.perennial.utils.commands;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.perennial.utils.PUtils;
+import org.perennial.utils.PerennialUtilities;
 import org.perennial.utils.data.PUtilsConfig;
 
 public class PUtilsCommand implements CommandExecutor {
 
-    private final PUtils plugin;
+    private final PerennialUtilities plugin;
 
     private final PUtilsConfig config;
 
-    public PUtilsCommand(PUtils plugin) {
+    public PUtilsCommand(PerennialUtilities plugin) {
         this.plugin = plugin;
         this.config = plugin.getConfig();
     }
@@ -67,13 +67,13 @@ public class PUtilsCommand implements CommandExecutor {
                 }
 
                 config.setProperty(targetProperty, targetValue);
-                PUtils.configuration.save();
+                PerennialUtilities.configuration.save();
                 sender.sendMessage("§aValue§2 " + targetProperty + "§a set to§2 " + targetValue + "§a!");
                 return true;
             }
 
             if (args[1].equalsIgnoreCase("reload")) {
-                PUtils.configuration.reload();
+                PerennialUtilities.configuration.reload();
                 sender.sendMessage("§aPerennial-Utilities config reloaded successfully!");
                 return true;
             }
@@ -88,8 +88,8 @@ public class PUtilsCommand implements CommandExecutor {
                 return true;
             }
 
-            PUtils.configuration.reload();
-            PUtils.userdata.reload();
+            PerennialUtilities.configuration.reload();
+            PerennialUtilities.userdata.reload();
             sender.sendMessage("§aPerennial-Utilities reloaded successfully!");
 
             return true;

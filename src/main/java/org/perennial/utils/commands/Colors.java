@@ -3,16 +3,16 @@ package org.perennial.utils.commands;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.perennial.utils.PerennialUtilities;
 import org.perennial.utils.data.PUtilsConfig;
-import org.perennial.utils.PUtils;
 
 public class Colors implements CommandExecutor {
 
-    private final PUtils plugin;
+    private final PerennialUtilities plugin;
 
     private final PUtilsConfig config;
 
-    public Colors(PUtils plugin) {
+    public Colors(PerennialUtilities plugin) {
         this.plugin = plugin;
         this.config = plugin.getConfig();
     }

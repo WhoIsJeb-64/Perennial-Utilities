@@ -4,16 +4,16 @@ import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.perennial.utils.PUtils;
+import org.perennial.utils.PerennialUtilities;
 import org.perennial.utils.data.PUtilsConfig;
 
-import static org.perennial.utils.PUtils.userdata;
+import static org.perennial.utils.PerennialUtilities.userdata;
 
 public class BlockBreak  implements Listener {
-    private PUtils plugin;
+    private PerennialUtilities plugin;
     private PUtilsConfig config;
 
-    public BlockBreak(PUtils plugin) {
+    public BlockBreak(PerennialUtilities plugin) {
         this.plugin = plugin;
         this.config = plugin.getConfig();
     }

@@ -4,17 +4,17 @@ import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerKickEvent;
-import org.perennial.utils.PUtils;
+import org.perennial.utils.PerennialUtilities;
 import org.perennial.utils.data.PUtilsConfig;
 
-import static org.perennial.utils.PUtils.userdata;
+import static org.perennial.utils.PerennialUtilities.userdata;
 
 public class PlayerKick implements Listener {
-    private PUtils plugin;
+    private PerennialUtilities plugin;
     private PUtilsConfig config;
 
     // Constructor to link the plugin instance
-    public PlayerKick(PUtils plugin) {
+    public PlayerKick(PerennialUtilities plugin) {
         this.plugin = plugin;
         this.config = plugin.getConfig();
     }

@@ -1,6 +1,6 @@
-name: PUtils
+name: Perennial-Utilities
 description: A plugin with a few misc features.
-main: org.perennial.utils.PUtils
+main: org.perennial.utils.PerennialUtilities
 version: 1.2
 authors:
   - WhoIsJeb
@@ -56,10 +56,18 @@ commands:
     permission: putils.custom-quitmsg
     permission-message: You do not have permission to use this command.
     aliases: [qmsg]
+  register:
+    description: Registers new players.
+    usage: /<command> <password>
+    aliases: [ pregister, reg, preg ]
+  login:
+    description: Logs one in.
+    usage: /<command> <password>
+    aliases: [ plogin, li, pli ]
 
 permissions:
   putils.*:
-    description: Gives access to all PUtils commands.
+    description: Gives access to all PerennialUtilities commands.
     children:
       putils.discord: true
       putils.map: true

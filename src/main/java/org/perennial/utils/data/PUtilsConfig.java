@@ -1,7 +1,7 @@
 package org.perennial.utils.data;
 
 import org.bukkit.util.config.Configuration;
-import org.perennial.utils.PUtils;
+import org.perennial.utils.PerennialUtilities;
 
 import java.io.File;
 
@@ -14,7 +14,7 @@ public class PUtilsConfig extends Configuration {
     private final int configVersion = 3;
 
 
-    private PUtils plugin;
+    private PerennialUtilities plugin;
 
     /**
      * Constructs a new TemplateConfig instance.
@@ -22,7 +22,7 @@ public class PUtilsConfig extends Configuration {
      * @param plugin     The plugin instance associated with this configuration.
      * @param configFile The configuration file to be managed.
      */
-    public PUtilsConfig(PUtils plugin, File configFile) {
+    public PUtilsConfig(PerennialUtilities plugin, File configFile) {
         super(configFile);
         this.plugin = plugin;
         this.reload();

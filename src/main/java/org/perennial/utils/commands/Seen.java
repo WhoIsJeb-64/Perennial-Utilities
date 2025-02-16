@@ -5,18 +5,18 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.perennial.utils.PUtils;
+import org.perennial.utils.PerennialUtilities;
 import org.perennial.utils.data.PUtilsConfig;
 
-import static org.perennial.utils.PUtils.userdata;
+import static org.perennial.utils.PerennialUtilities.userdata;
 
 public class Seen implements CommandExecutor {
 
-    private final PUtils plugin;
+    private final PerennialUtilities plugin;
 
     private final PUtilsConfig config;
 
-    public Seen(PUtils plugin) {
+    public Seen(PerennialUtilities plugin) {
         this.plugin = plugin;
         this.config = plugin.getConfig();
     }

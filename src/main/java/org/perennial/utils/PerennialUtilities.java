@@ -12,7 +12,7 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class PUtils extends JavaPlugin {
+public class PerennialUtilities extends JavaPlugin {
     private JavaPlugin plugin;
     private Logger log;
     private String pluginName;
@@ -43,6 +43,8 @@ public class PUtils extends JavaPlugin {
         //getCommand("seen").setExecutor(new Seen(this));
         getCommand("putils").setExecutor(new PUtilsCommand(this));
         getCommand("joinmsg").setExecutor(new JoinMsg(this));
+        getCommand("register").setExecutor(new Register(this));
+        getCommand("login").setExecutor(new Login(this));
 
         //Register listeners
         final PlayerJoin joinlistener = new PlayerJoin(this);
@@ -50,11 +52,13 @@ public class PUtils extends JavaPlugin {
         final PlayerKick kicklistener = new PlayerKick(this);
         final BlockBreak breaklistener = new BlockBreak(this);
         final BlockPlace placelistener = new BlockPlace(this);
+        final PlayerMove movelistener = new PlayerMove(this);
         getServer().getPluginManager().registerEvents(joinlistener, this);
         getServer().getPluginManager().registerEvents(quitlistener, this);
         getServer().getPluginManager().registerEvents(kicklistener, this);
         getServer().getPluginManager().registerEvents(breaklistener, this);
         getServer().getPluginManager().registerEvents(placelistener, this);
+        getServer().getPluginManager().registerEvents(movelistener, this);
 
         log.info("[" + pluginName + "] Is Loaded, Version: " + pdf.getVersion());
     }
@@ -79,5 +83,9 @@ public class PUtils extends JavaPlugin {
 
     public static PUtilsData getData() {
         return userdata;
+    }
+
+    public boolean mustRegister(String playerName) {
+        return userdata.getProperty(playerName + ".password") == null;
     }
 }

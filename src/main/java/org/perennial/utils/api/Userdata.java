@@ -1,6 +1,6 @@
 package org.perennial.utils.api;
 
-import static org.perennial.utils.PUtils.userdata;
+import static org.perennial.utils.PerennialUtilities.userdata;
 
 public final class Userdata {
 

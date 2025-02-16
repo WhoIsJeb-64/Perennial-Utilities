@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.perennial</groupId>
-    <artifactId>PUtils</artifactId>
+    <artifactId>Perennial-Utilities</artifactId>
     <version>1.2.0</version>
     <description>A plugin with a few misc features.</description>
 

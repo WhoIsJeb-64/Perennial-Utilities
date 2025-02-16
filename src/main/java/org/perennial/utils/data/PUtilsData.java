@@ -1,16 +1,16 @@
 package org.perennial.utils.data;
 
 import org.bukkit.util.config.Configuration;
-import org.perennial.utils.PUtils;
+import org.perennial.utils.PerennialUtilities;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 
 public class PUtilsData extends Configuration {
 
-    private PUtils plugin;
+    private PerennialUtilities plugin;
 
-    public PUtilsData(PUtils plugin, File statsFile) {
+    public PUtilsData(PerennialUtilities plugin, File statsFile) {
         super(statsFile);
         this.plugin = plugin;
         this.reload();
@@ -46,6 +46,10 @@ public class PUtilsData extends Configuration {
 
     public Long getDataLong(String key) {
         return Long.valueOf(getDataString(key));
+    }
+
+    public boolean getDataBool(String key) {
+        return Boolean.valueOf(getDataString(key));
     }
 
     //Incrementing statistics
