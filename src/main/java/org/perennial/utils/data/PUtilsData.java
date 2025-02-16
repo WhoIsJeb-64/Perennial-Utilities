@@ -2,9 +2,7 @@ package org.perennial.utils.data;
 
 import org.bukkit.util.config.Configuration;
 import org.perennial.utils.PerennialUtilities;
-
 import java.io.File;
-import java.text.SimpleDateFormat;
 
 import static org.perennial.utils.PerennialUtilities.userdata;
 
@@ -31,6 +29,8 @@ public class PUtilsData extends Configuration {
         userdata.generateDataEntry(playerName + ".quit-message", config.defaultQuitMessage());
         userdata.generateDataEntry(playerName + ".password", null);
         userdata.generateDataEntry(playerName + ".must-login", true);
+        userdata.generateDataEntry(playerName + ".stats.balance", 0);
+        userdata.generateDataEntry(playerName + ".stats.last-seen", 0);
         userdata.generateDataEntry(playerName + ".stats.time-played", 0);
         userdata.generateDataEntry(playerName + ".stats.blocks-broken", 0);
         userdata.generateDataEntry(playerName + ".stats.blocks-placed", 0);
@@ -64,17 +64,24 @@ public class PUtilsData extends Configuration {
         return Boolean.valueOf(getDataString(key));
     }
 
-    //Incrementing statistics
-
-    public Integer incrementDataInt(String key) {
-        return Integer.sum(this.getDataInt(key), 1);
+    public double getDataDouble(String key) {
+        return Double.valueOf(getDataString(key));
     }
 
-    public String seeLastSeen(String key) {
-        long seenAgo = (System.currentTimeMillis() / 1000) - getDataLong(key);
-        String DATE_FORMAT = "D 'days,' H 'hours, &' m 'minutes'";
-        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-        return sdf.format(seenAgo);
+    public long getLastSeen(String playerName) {
+        long now = System.currentTimeMillis() / 1000;
+        long lastSeen = getDataLong(playerName + ".stats.last-seen");
+        return (now - lastSeen) / 3600;
+    }
+
+    //Incrementing statistics
+
+    public Integer incrementDataInt(String key, Integer amount) {
+        return Integer.sum(getDataInt(key), amount);
+    }
+
+    public double incrementDataDouble(String key, Double amount) {
+        return Double.sum(getDataDouble(key), amount);
     }
 
     //Playtime stuff
@@ -95,6 +102,14 @@ public class PUtilsData extends Configuration {
         long sessionEnd = System.currentTimeMillis() / 1000;
         long timeElapsed = sessionEnd - sessionStart;
         setProperty(playerName + ".stats.time-played", timePlayed + timeElapsed);
+        save();
+    }
+
+    //Other stuff
+
+    public void setLastSeen(String playerName) {
+        long lastSeen = System.currentTimeMillis() / 1000;
+        setProperty(playerName + ".stats.last-seen", lastSeen);
         save();
     }
 }

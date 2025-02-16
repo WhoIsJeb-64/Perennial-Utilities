@@ -24,7 +24,7 @@ public class PlayerChat implements Listener {
 
         String playerName = event.getPlayer().getName();
         String key = playerName + ".stats.messages-sent";
-        userdata.setProperty(key, userdata.incrementDataInt(key));
+        userdata.setProperty(key, userdata.incrementDataInt(key, 1));
         userdata.save();
     }
 }

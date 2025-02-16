@@ -1,8 +1,10 @@
 package org.perennial.utils.commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.perennial.utils.PerennialUtilities;
 import org.perennial.utils.data.PUtilsConfig;
 
@@ -32,7 +34,10 @@ public class Playtime implements CommandExecutor {
             subject = args[0];
         }
 
-
+        Player player = Bukkit.getPlayerExact(subject);
+        if (player != null) {
+            userdata.updatePlaytime(subject);
+        }
         long hoursPlayed = userdata.secondsToHours(subject + ".stats.time-played");
 
         sender.sendMessage("§9" + subject + "'s §9Time Played:§3 " + hoursPlayed + "h");

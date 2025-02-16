@@ -6,16 +6,19 @@ import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerKickEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.perennial.utils.PerennialUtilities;
 import org.perennial.utils.data.PUtilsConfig;
 
 import static org.perennial.utils.PerennialUtilities.userdata;
 
-public class PlayerJoin implements Listener {
+public class JoinLeave implements Listener {
+
     private PerennialUtilities plugin;
     private PUtilsConfig config;
 
-    public PlayerJoin(PerennialUtilities plugin) {
+    public JoinLeave(PerennialUtilities plugin) {
         this.plugin = plugin;
         this.config = plugin.getConfig();
     }
@@ -34,7 +37,6 @@ public class PlayerJoin implements Listener {
         message = message.replace("%p%", playerName);
         event.setJoinMessage((message));
 
-        //Record play session's start for calculating playtime
         userdata.startPlaytimeCounting(playerName);
 
         //Require that unregistered users register
@@ -42,5 +44,33 @@ public class PlayerJoin implements Listener {
         if (!plugin.mustRegister(playerName)) {
             userdata.setProperty(playerName + ".must-login", true);
         }
+    }
+
+    @EventHandler(priority = Event.Priority.Highest)
+    public void onPlayerQuit(PlayerQuitEvent event) {
+
+        //Quit message
+        String playerName = event.getPlayer().getName();
+        String defaultQuitMessage = plugin.getConfig().getConfigString("quit-message");
+        String message = userdata.getDataString(playerName + ".quit-message");
+        message = message.replace("%p%", playerName);
+        event.setQuitMessage((message));
+
+        userdata.updatePlaytime(playerName);
+        userdata.setLastSeen(playerName);
+    }
+
+    @EventHandler(priority = Event.Priority.High)
+    public void onPlayerKick(PlayerKickEvent event) {
+
+        String playerName = event.getPlayer().getName();
+
+        //Kick message
+        String message = plugin.getConfig().getConfigString("kick-message");
+        message = message.replace("%p%", event.getPlayer().getName());
+        event.setLeaveMessage((message));
+
+        userdata.updatePlaytime(playerName);
+        userdata.setLastSeen(playerName);
     }
 }

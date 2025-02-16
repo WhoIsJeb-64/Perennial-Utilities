@@ -40,27 +40,21 @@ public class PerennialUtilities extends JavaPlugin {
         getCommand("colors").setExecutor(new Colors(this));
         getCommand("stats").setExecutor(new Stats(this));
         getCommand("playtime").setExecutor(new Playtime(this));
-        //getCommand("seen").setExecutor(new Seen(this));
+        getCommand("seen").setExecutor(new Seen(this));
         getCommand("putils").setExecutor(new PUtilsCommand(this));
         getCommand("joinmsg").setExecutor(new JoinMsg(this));
         getCommand("register").setExecutor(new Register(this));
         getCommand("login").setExecutor(new Login(this));
 
         //Register listeners
-        final PlayerJoin joinlistener = new PlayerJoin(this);
-        final PlayerQuit quitlistener = new PlayerQuit(this);
-        final PlayerKick kicklistener = new PlayerKick(this);
+        final JoinLeave joinleavelistener = new JoinLeave(this);
         final PlayerMove movelistener = new PlayerMove(this);
         final PlayerChat chatlistener = new PlayerChat(this);
-        final BlockBreak breaklistener = new BlockBreak(this);
-        final BlockPlace placelistener = new BlockPlace(this);
-        getServer().getPluginManager().registerEvents(joinlistener, this);
-        getServer().getPluginManager().registerEvents(quitlistener, this);
-        getServer().getPluginManager().registerEvents(kicklistener, this);
+        final ModifyWorld modworldlistener = new ModifyWorld(this);
+        getServer().getPluginManager().registerEvents(joinleavelistener, this);
         getServer().getPluginManager().registerEvents(movelistener, this);
         getServer().getPluginManager().registerEvents(chatlistener, this);
-        getServer().getPluginManager().registerEvents(breaklistener, this);
-        getServer().getPluginManager().registerEvents(placelistener, this);
+        getServer().getPluginManager().registerEvents(modworldlistener, this);
 
         log.info("[" + pluginName + "] Is Loaded, Version: " + pdf.getVersion());
     }

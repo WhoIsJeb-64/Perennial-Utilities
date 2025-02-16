@@ -1,12 +1,10 @@
 package org.perennial.utils.commands;
 
-import com.earth2me.essentials.api.UserDoesNotExistException;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.perennial.utils.PerennialUtilities;
 import org.perennial.utils.data.PUtilsConfig;
-import com.earth2me.essentials.api.Economy;
 
 import java.text.DecimalFormat;
 
@@ -37,12 +35,7 @@ public class Stats implements CommandExecutor {
             subject = args[0];
         }
 
-        double balance;
-        try {
-            balance = Economy.getMoney(subject);
-        } catch (UserDoesNotExistException e) {
-            throw new RuntimeException(e);
-        }
+        double balance = userdata.getDataDouble(subject + ".stats.balance");
 
         //Convert playtime to hours and add commas to blocks broken/placed and messages sent
         long hoursPlayed = userdata.secondsToHours(subject + ".stats.time-played");
