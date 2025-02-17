@@ -40,8 +40,6 @@ public class PerennialUtilities extends JavaPlugin {
         getCommand("colors").setExecutor(new Colors(this));
         getCommand("stats").setExecutor(new Stats(this));
         getCommand("playtime").setExecutor(new Playtime(this));
-        getCommand("pay").setExecutor(new Pay(this));
-        getCommand("balance").setExecutor(new Balance(this));
         getCommand("seen").setExecutor(new Seen(this));
         getCommand("putils").setExecutor(new PUtilsCommand(this));
         getCommand("joinmsg").setExecutor(new JoinMsg(this));

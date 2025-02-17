@@ -24,12 +24,13 @@ public class PUtilsData extends Configuration {
         this.save();
     }
 
+
+
     public void write(String playerName) {
         userdata.generateDataEntry(playerName + ".join-message", config.defaultJoinMessage());
         userdata.generateDataEntry(playerName + ".quit-message", config.defaultQuitMessage());
         userdata.generateDataEntry(playerName + ".password", null);
         userdata.generateDataEntry(playerName + ".must-login", true);
-        userdata.generateDataEntry(playerName + ".stats.balance", 0);
         userdata.generateDataEntry(playerName + ".stats.last-seen", 0);
         userdata.generateDataEntry(playerName + ".stats.time-played", 0);
         userdata.generateDataEntry(playerName + ".stats.blocks-broken", 0);
@@ -76,8 +77,9 @@ public class PUtilsData extends Configuration {
 
     //Incrementing statistics
 
-    public Integer modifyDataInt(String key, Integer amount) {
-        return Integer.sum(getDataInt(key), amount);
+    public void modifyDataInt(String key, Integer amount) {
+        int moddedInt = Integer.sum(getDataInt(key), amount);
+        setProperty(key, moddedInt);
     }
 
     public double modifyDataDouble(String key, Double amount) {

@@ -25,7 +25,7 @@ public class ModifyWorld implements Listener {
 
         String playerName = event.getPlayer().getName();
         String key = playerName + ".stats.blocks-broken";
-        userdata.setProperty(key, userdata.modifyDataInt(key, 1));
+        userdata.modifyDataInt(key, 1);
         userdata.save();
     }
 
@@ -34,7 +34,7 @@ public class ModifyWorld implements Listener {
 
         String playerName = event.getPlayer().getName();
         String key = playerName + ".stats.blocks-placed";
-        userdata.setProperty(key, userdata.modifyDataInt(key, 1));
+        userdata.modifyDataInt(key, 1);
         userdata.save();
     }
 }
