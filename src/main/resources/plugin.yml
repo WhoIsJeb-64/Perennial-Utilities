@@ -35,6 +35,16 @@ commands:
     permission: putils.stats
     permission-message: You do not have permission to use this command.
     aliases: [pti]
+  balance:
+    description: Prints the sender's balance.
+    usage: /<command>
+    permission: putils.balance
+    aliases: [bal, pbalance, pbal]
+  pay:
+    description: Pays the specified player the specified amount of money.
+    usage: /<command> <player> <amount>
+    permission: putils.pay
+    aliases: [ppay]
   seen:
     description: Lists the last time specified player was online. (yyyy-MM-dd HH:mm UTC)
     usage: /<command> <player>
@@ -84,6 +94,10 @@ permissions:
     description: Gives access to /colors.
   putils.stats:
     description: Gives access to /stats and /playtime.
+  putils.balance:
+    description: Gives access to /bal and /baltop.
+  putils.pay:
+    description: Gives access to /pay.
   putils.seen:
     description: Gives access to /seen.
   putils.debug:

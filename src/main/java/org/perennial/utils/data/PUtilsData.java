@@ -76,19 +76,15 @@ public class PUtilsData extends Configuration {
 
     //Incrementing statistics
 
-    public Integer incrementDataInt(String key, Integer amount) {
+    public Integer modifyDataInt(String key, Integer amount) {
         return Integer.sum(getDataInt(key), amount);
     }
 
-    public double incrementDataDouble(String key, Double amount) {
+    public double modifyDataDouble(String key, Double amount) {
         return Double.sum(getDataDouble(key), amount);
     }
 
     //Playtime stuff
-
-    public long secondsToHours(String key) {
-        return getDataLong(key) / 3600;
-    }
 
     public void startPlaytimeCounting(String playerName) {
         long sessionStart = System.currentTimeMillis() / 1000;
@@ -103,6 +99,16 @@ public class PUtilsData extends Configuration {
         long timeElapsed = sessionEnd - sessionStart;
         setProperty(playerName + ".stats.time-played", timePlayed + timeElapsed);
         save();
+    }
+
+    //Calculations
+
+    public long secondsToHours(String key) {
+        return getDataLong(key) / 3600;
+    }
+
+    public double roundToHundredths(Double input) {
+        return Math.floor(input * 100) / 100;
     }
 
     //Other stuff
